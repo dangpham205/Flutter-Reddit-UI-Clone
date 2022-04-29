@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/views/base_screen.dart';
 import 'package:midterm_519h0277/views/login_screen.dart';
 
 import '../constants/colors.dart';
@@ -162,20 +163,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     textAlign: TextAlign.start,    //canh giữa đoạn text
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(26.0), bottom: Radius.circular(26.0)),
-                        color: _usernameController.text != '' && _passwordController.text != '' 
-                        ? redditColor 
-                        : const Color.fromARGB(144, 226, 48, 12),
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: const Center(
-                        child:  
-                        Text('Continue', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),)
+                  InkWell(
+                    onTap: () {
+                      if (_passwordController.text != '' && _usernameController.text != '' && _emailController.text != ''){
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 24.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.vertical(top: Radius.circular(26.0), bottom: Radius.circular(26.0)),
+                          color: _usernameController.text != '' && _passwordController.text != '' 
+                          ? redditColor 
+                          : const Color.fromARGB(144, 226, 48, 12),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: const Center(
+                          child:  
+                          Text('Continue', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),)
+                        ),
                       ),
                     ),
                   ),

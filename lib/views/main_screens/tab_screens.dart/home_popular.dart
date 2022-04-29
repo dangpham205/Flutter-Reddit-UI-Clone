@@ -51,8 +51,7 @@ class _PopularTabState extends State<PopularTab> {
                             
                           },
                           child: Container(
-                            padding: const EdgeInsets.only(left: 12),
-                            width: 90,
+                            width: 80,
                             height: 50,
                             child: Row(
                               children: const [
