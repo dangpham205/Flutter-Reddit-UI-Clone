@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_initializing_formals
+
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/views/base_screen.dart';
 import 'package:midterm_519h0277/views/login_screen.dart';
 
 class IntroduceScreen extends StatefulWidget {
@@ -79,7 +82,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                       const SizedBox(height: 24,),
                       InkWell(
                         onTap: () {
-
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
                           logoImg: 'assets/gg_logo.png', 
@@ -89,7 +92,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                       const SizedBox(height: 8,),
                       InkWell(
                         onTap: () {
-
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
                           logoImg: 'assets/apple_logo.jpg', 
@@ -99,7 +102,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                       const SizedBox(height: 8,),
                       InkWell(
                         onTap: () {
-
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
                           logoImg: 'assets/mail_logo.png', 
