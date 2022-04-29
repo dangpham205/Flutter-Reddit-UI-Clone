@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/views/main_screens/chat_screen.dart';
 import 'package:midterm_519h0277/views/main_screens/explore_screen.dart';
 import 'package:midterm_519h0277/views/main_screens/home_screen.dart';
+import 'package:midterm_519h0277/views/main_screens/notification_screen.dart';
 import 'package:midterm_519h0277/views/main_screens/upload_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _BaseScreenState extends State<BaseScreen> {
           ExploreScreen(),
           UploadScreen(),
           ChatScreen(),
-          UploadScreen(),
+          NotificationScreen(),
         ]
         ,  //liệt kê các page sẽ có (số lượng tương ứng với số icon dưới thanh nav)
         physics: const NeverScrollableScrollPhysics(), //tắt chuyển tab bằng cách kéo ngang
