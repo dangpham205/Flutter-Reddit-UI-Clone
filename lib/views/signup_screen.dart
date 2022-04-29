@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/views/signup_screen.dart';
+import 'package:midterm_519h0277/views/login_screen.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({ Key? key }) : super(key: key);
+import '../constants/colors.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({ Key? key }) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
 
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     _usernameController.dispose();
     _passwordController.dispose();
+    _emailController.dispose();
   }
 
   @override
@@ -35,9 +38,9 @@ class _LogInScreenState extends State<LogInScreen> {
         actions: [
           TextButton(                                   //chat
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LogInScreen()));
             },
-            child: const Text('Sign Up', style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 100, 100, 100)),)
+            child: const Text('Log in', style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 100, 100, 100)),)
           ),
           const SizedBox(width: 10,)
         ],
@@ -49,15 +52,35 @@ class _LogInScreenState extends State<LogInScreen> {
           child: SafeArea(
             child: Container(
               color: Colors.white,
-              padding: const EdgeInsets.only(left: 18, right: 18, top: 24),
+              padding: const EdgeInsets.only(left: 18, right: 18, top: 36),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Log in to Reddit', 
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                    'Hi new friend, welcome to \nReddit', 
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
                   ),
-                  Flexible(child: Container(), flex: 1,),
+                  Flexible(child: Container(), flex: 2,),
+                  TextFormField(
+                    style: const TextStyle(fontSize: 20),
+                    cursorColor: const Color.fromARGB(255, 17, 0, 162),
+                    textInputAction: TextInputAction.next,
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      label:  Text('Email'),
+                      labelStyle: TextStyle(
+                        fontSize: 16, 
+                        color: Colors.grey , 
+                        fontWeight: FontWeight.w600),
+                      enabledBorder: UnderlineInputBorder(      
+                        borderSide: BorderSide(color: Color.fromARGB(255, 229, 229, 229), width: 2),   
+                      ),  
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromARGB(255, 17, 0, 162),width: 2),
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,                
+                  ),
                   TextFormField(
                     style: const TextStyle(fontSize: 20),
                     cursorColor: const Color.fromARGB(255, 17, 0, 162),
@@ -76,8 +99,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderSide: BorderSide(color: Color.fromARGB(255, 17, 0, 162),width: 2),
                       ),
                     ),
-                    keyboardType: TextInputType.text,
-                    
+                    keyboardType: TextInputType.text,                
                   ),
                   TextFormField(
                     style: const TextStyle(fontSize: 20),
@@ -104,8 +126,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     keyboardType: TextInputType.text,
                   ),
-                  Flexible(child: Container(), flex: 1,),
-                  const Text('Forgot password', style: TextStyle(color: redditColor),),
                   Flexible(child: Container(), flex: 4,),
                   const Text.rich(
                     TextSpan(
@@ -159,7 +179,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                     ),
                   ),
-                  Flexible(child: Container(), flex: 2,),
+                  Flexible(child: Container(), flex: 3,),
                 ],
               ),
             ),
