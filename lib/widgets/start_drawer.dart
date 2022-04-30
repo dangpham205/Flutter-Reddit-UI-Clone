@@ -25,63 +25,66 @@ class _StartDrawerState extends State<StartDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Material(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 28.0, left: 12,right: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Divider(color: textColor2,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text('Recently Visited', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                  Text('See all')
-                ],
-              ),
-              const SizedBox(height: 14,),
-              drawerItem(text: "r/visitedreddit",avatar: "assets/logo1.png",haveFavorite: false),
-              const Divider(color: textColor2,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text('Your Communities', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                  Icon(Icons.arrow_drop_down_sharp, color: textColor2,)
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: drawerItem(text: "Create a community",icon: Icons.add ,haveFavorite: false),
-              ),
-              FutureBuilder(
-                future: getReddits(),
-                builder: (BuildContext context, AsyncSnapshot<List<Reddit>> reddit) {
-                return MediaQuery.removePadding(
-                  removeTop: true,
-                  context: context,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: reddit.data?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      var itemData = reddit.data![index];
-                      return RedditCard(
-                        reddit: itemData,
-                      );
-                    }
-                  ),
-                );
-                }
-              ),
-              drawerItem(text: "Custom Feeds",icon: Icons.dashboard_customize ,haveFavorite: true),
-              const Divider(color: textColor2,),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: drawerItem(text: "All",icon: Icons.all_out,haveFavorite: false),
-              ),
-            ],
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Drawer(
+        child: Material(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 28.0, left: 12,right: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Divider(color: dividerColor, ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text('Recently Visited', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                    Text('See all')
+                  ],
+                ),
+                const SizedBox(height: 14,),
+                drawerItem(text: "r/visitedreddit",avatar: "assets/logo1.png",haveFavorite: false),
+                const Divider(color: dividerColor,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text('Your Communities', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                    Icon(Icons.arrow_drop_down_sharp, color: textColor2,)
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: drawerItem(text: "Create a community",icon: Icons.add ,haveFavorite: false),
+                ),
+                FutureBuilder(
+                  future: getReddits(),
+                  builder: (BuildContext context, AsyncSnapshot<List<Reddit>> reddit) {
+                  return MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: reddit.data?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        var itemData = reddit.data![index];
+                        return RedditCard(
+                          reddit: itemData,
+                        );
+                      }
+                    ),
+                  );
+                  }
+                ),
+                drawerItem(text: "Custom Feeds",icon: Icons.dashboard_customize ,haveFavorite: true),
+                const Divider(color: dividerColor,),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: drawerItem(text: "All",icon: Icons.all_out,haveFavorite: false),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -119,7 +122,7 @@ class _StartDrawerState extends State<StartDrawer> {
             ),
           ),
         ),
-        const SizedBox(height: 20,)
+        const SizedBox(height: 16,)
       ],
     );
   }
