@@ -2,3 +2,9 @@
 sliver app bar
 
 nếu inkwell khi tap kh có màu thì wrap inkwell trong Material()
+
+mặc định thì listview sẽ có 1 phần padding top, để loại bỏ phần đó thì wrap listview trong:
+    MediaQuery.removePadding(
+                  removeTop: true,
+                  context: context,
+                  child: ListView.builder(

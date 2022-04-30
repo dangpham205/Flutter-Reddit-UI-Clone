@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:midterm_519h0277/views/introduce_screen.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

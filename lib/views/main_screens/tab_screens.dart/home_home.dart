@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
+import 'package:midterm_519h0277/models/reddit.dart';
+import 'package:midterm_519h0277/widgets/reddit_card.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({ Key? key }) : super(key: key);
@@ -9,6 +13,13 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +39,7 @@ class _HomeTabState extends State<HomeTab> {
                       Material(
                         color: seperateColor,
                         child: InkWell(
-                          onTap: () {
+                          onTap: () async{
                             
                           },
                           child: Container(
@@ -57,9 +68,9 @@ class _HomeTabState extends State<HomeTab> {
                             padding: const EdgeInsets.only(right: 12),
                             child: const Icon(Icons.slideshow, color: textColor2,)),
                         ),
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
