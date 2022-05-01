@@ -55,6 +55,34 @@
             "comments": 691,
             "isMember": "true",
             "awards": 2
+        },
+        {
+            "id": "5",
+            "channel": "learnpython",
+            "avatarUrl": "assets/image/aw2.jpg",
+            "username": "ruthlesscattle",
+            "time": "11h",
+            "title": "What is the most Pythonic way of looping through a dictionary keys?",
+            "caption": "",
+            "imageUrl": "assets/image/post2.jpg",
+            "upvotes":91,
+            "comments": 67,
+            "isMember": "false",
+            "awards": 1
+        },
+        {
+            "id": "6",
+            "channel": "cscareerquestions",
+            "avatarUrl": "assets/image/logo4.png",
+            "username": "jogaeu1",
+            "time": "4h",
+            "title": "I'm being bullied by my manager",
+            "caption": "Already polishing my CV but just wanted to have some opinions on this matter and maybe change my mind since I love the company.Joined the company about a year ago as a Full Stack Software Developer, even though the backend was not written in my main backend language I got to learn and get confortable with it in a short time. I've fixed bugs, implemented new features and added some improvements so I consider myself a fast learner. Because of this, I took ownership of the project in the first two months I was there and everything worked well.",
+            "imageUrl": "",
+            "upvotes": 52,
+            "comments": 39,
+            "isMember": "false",
+            "awards": 2
         }
     ] 
 }

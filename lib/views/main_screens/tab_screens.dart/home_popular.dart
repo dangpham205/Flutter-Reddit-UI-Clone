@@ -49,7 +49,7 @@ class _PopularTabState extends State<PopularTab> {
               ),
             );
             }
-                          ),
+            ),
           ],
         ),
       ),
