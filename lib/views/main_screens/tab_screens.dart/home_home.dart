@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/reddit.dart';
-import 'package:midterm_519h0277/widgets/reddit_card.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({ Key? key }) : super(key: key);

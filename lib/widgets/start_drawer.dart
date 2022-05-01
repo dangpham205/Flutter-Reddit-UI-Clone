@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/widgets/reddit_card.dart';
