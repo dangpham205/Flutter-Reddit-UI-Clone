@@ -14,12 +14,7 @@ class StartDrawer extends StatefulWidget {
 
 class _StartDrawerState extends State<StartDrawer> {
 
-  Future<List<Reddit>> getReddits() async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/reddit.json");
-    var tagObjsJson = jsonDecode(data)['reddit'] as List;
-    List<Reddit> reddits = tagObjsJson.map((tagJson) => Reddit.fromJSON(tagJson)).toList();
-    return reddits;
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +51,7 @@ class _StartDrawerState extends State<StartDrawer> {
                   child: drawerItem(text: "Create a community",icon: Icons.add ,haveFavorite: false),
                 ),
                 FutureBuilder(
-                  future: getReddits(),
+                  future: Reddit.getReddits(context),
                   builder: (BuildContext context, AsyncSnapshot<List<Reddit>> reddit) {
                   return MediaQuery.removePadding(
                     removeTop: true,

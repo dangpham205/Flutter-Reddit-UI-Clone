@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+
 class Reddit{
   final String id;
   final String name;
@@ -23,6 +27,13 @@ class Reddit{
       bio: snap['bio'],
       members: snap['members'],
     );
+  }
+
+  static Future<List<Reddit>> getReddits(BuildContext context) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/reddit.json");
+    var tagObjsJson = jsonDecode(data)['reddit'] as List;
+    List<Reddit> reddits = tagObjsJson.map((tagJson) => Reddit.fromJSON(tagJson)).toList();
+    return reddits;
   }
     
 }

@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'My Reddit',
       theme: ThemeData(
         primaryColor: Colors.black,
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarColor: Colors.red,
+            systemNavigationBarColor: Colors.white,
             statusBarColor: Colors.transparent, 
             statusBarIconBrightness: Brightness.dark,
           ),
