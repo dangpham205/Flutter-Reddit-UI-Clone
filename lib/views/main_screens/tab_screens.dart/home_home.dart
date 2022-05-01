@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
+import 'package:midterm_519h0277/models/post.dart';
+
+import '../../../widgets/post_card.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({ Key? key }) : super(key: key);
@@ -67,6 +70,26 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                     ],
                   ),
+                  FutureBuilder(
+                  future: Post.getReddits(context),
+                  builder: (BuildContext context, AsyncSnapshot<List<Post>> post) {
+                  return MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: post.data?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        var itemData = post.data![index];
+                        return PostCard(
+                          post: itemData,
+                        );
+                      }
+                    ),
+                  );
+                  }
+                ),
                 ],
               ),
             ),

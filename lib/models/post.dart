@@ -14,7 +14,7 @@ class Post{
   final int upvotes;
   final int comments;
   final String isMember;
-  final List<String> awards;
+  final int awards;
 
   const Post( {
       required this.id,
@@ -51,8 +51,8 @@ class Post{
   }
     
   static Future<List<Post>> getReddits(BuildContext context) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/reddit.json");
-    var tagObjsJson = jsonDecode(data)['reddit'] as List;
+    String data = await DefaultAssetBundle.of(context).loadString("assets/post.json");
+    var tagObjsJson = jsonDecode(data)['post'] as List;
     List<Post> posts = tagObjsJson.map((tagJson) => Post.fromJSON(tagJson)).toList();
     return posts;
   }

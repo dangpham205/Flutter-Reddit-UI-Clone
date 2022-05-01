@@ -1,0 +1,46 @@
+{
+    "post": [
+        {
+            "id": "1",
+            "channel": "cscareerquestions",
+            "avatarUrl": "assets/image/logo1.png",
+            "username": "HistorianOwn9933",
+            "time": "16h",
+            "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+            "caption": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "imageUrl": "",
+            "upvotes": 37,
+            "comments": 46,
+            "isMember": "true",
+            "awards": 0
+        },
+        {
+            "id": "2",
+            "channel": "dogecoin",
+            "avatarUrl": "assets/image/logo2.png",
+            "username": "1BillionSubcribers",
+            "time": "11h",
+            "title": "Where does it come from?",
+            "caption": "",
+            "imageUrl": "",
+            "upvotes": 54,
+            "comments": 35,
+            "isMember": "false",
+            "awards": 2
+        },
+        {
+            "id": "3",
+            "channel": "therewasanattempt",
+            "avatarUrl": "assets/image/logo3.png",
+            "username": "BigGraysie",
+            "time": "22h",
+            "title": "Section 1.10.32 of 'de Finibus Bonorum et Malorum'",
+            "caption": "",
+            "imageUrl": "assets/image/cat.gif",
+            "upvotes": 50000,
+            "comments": 6913,
+            "isMember": "false",
+            "awards": 1
+        }
+    ] 
+}
