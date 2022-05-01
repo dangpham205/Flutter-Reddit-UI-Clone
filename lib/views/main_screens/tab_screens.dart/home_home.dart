@@ -27,7 +27,7 @@ class _HomeTabState extends State<HomeTab> {
         child: ListView(
           children: [
             FutureBuilder(
-            future: Post.getReddits(context),
+            future: Post.getPosts(context),
             builder: (BuildContext context, AsyncSnapshot<List<Post>> post) {
             return MediaQuery.removePadding(
               removeTop: true,

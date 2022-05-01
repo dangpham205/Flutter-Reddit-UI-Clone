@@ -50,10 +50,23 @@ class Post{
     );
   }
     
-  static Future<List<Post>> getReddits(BuildContext context) async{
+  static Future<List<Post>> getPosts(BuildContext context) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/post.json");
     var tagObjsJson = jsonDecode(data)['post'] as List;
     List<Post> posts = tagObjsJson.map((tagJson) => Post.fromJSON(tagJson)).toList();
     return posts;
+  }
+
+  static Future<List<Post>> getPostsWithImage(BuildContext context) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/post.json");
+    var tagObjsJson = jsonDecode(data)['post'] as List;
+    List<Post> posts = tagObjsJson.map((tagJson) => Post.fromJSON(tagJson)).toList();
+    List<Post> result = [];
+    for (Post post in posts){
+      if (post.imageUrl != ""){
+        result.add(post);
+      }
+    }
+    return result;
   }
 }

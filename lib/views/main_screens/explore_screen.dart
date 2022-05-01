@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../constants/colors.dart';
+import '../../models/post.dart';
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
 
@@ -58,52 +60,85 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
           ],
         ),
-        body: Container(
-          // height: 60,
-          color: seperateColor,
-          child: ListView(
-            children: [
-              MediaQuery.removePadding(
-                removeTop: true,
-                context: context,
-                child: Column(
-                  children: [
-                    Material(
-                      elevation: 2,
-                      child: Container(               //category
-                        height: 60,
-                        color: seperateColor,
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: 1,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Row(
-                              children: const [
-                                SizedBox(width: 12,),
-                                CategoryButtons(name: "Art"),
-                                CategoryButtons(name: "Technology"),
-                                CategoryButtons(name: "Celebrity"),
-                                CategoryButtons(name: "Fashion"),
-                                CategoryButtons(name: "Beauty"),
-                                CategoryButtons(name: "Funny"),
-                                CategoryButtons(name: "Memes"),
-                                CategoryButtons(name: "Television"),
-                                CategoryButtons(name: "Food"),
-                                CategoryButtons(name: "Movies"),
-                                CategoryButtons(name: "Hobbies"),
-                                SizedBox(width: 12,),
-                              ],
-                            );
-                          }
-                        ),
+        body: Column(
+          children: [
+            const Category(),
+            ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                FutureBuilder(
+                  future: Post.getPostsWithImage(context),
+                  builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
+                    return StaggeredGridView.countBuilder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      crossAxisCount: 3, 
+                      itemCount: post.data?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          child: Image(
+                            image: AssetImage(post.data![index].imageUrl),
+                            fit: BoxFit.fitWidth,
+                          ),
+                          onTap: () {
+                          },
+                        );
+                      },
+                      staggeredTileBuilder: (index) => StaggeredTile.count(
+                        (index % 7 == 0) ? 2 : 1,     //cross axis cells count
+                        (index % 7 == 0) ? 2 : 1,     //main axis cells count
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4,
+                    );
+                  }
+                )
+              ],
+                  ),
+          ],
+        ),
+    );
+  }
+}
+
+class Category extends StatelessWidget {
+  const Category({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 2,
+      child: Container(               //category
+        height: 60,
+        color: seperateColor,
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Row(
+              children: const [
+                SizedBox(width: 12,),
+                CategoryButtons(name: "Art"),
+                CategoryButtons(name: "Technology"),
+                CategoryButtons(name: "Celebrity"),
+                CategoryButtons(name: "Fashion"),
+                CategoryButtons(name: "Beauty"),
+                CategoryButtons(name: "Funny"),
+                CategoryButtons(name: "Memes"),
+                CategoryButtons(name: "Television"),
+                CategoryButtons(name: "Food"),
+                CategoryButtons(name: "Movies"),
+                CategoryButtons(name: "Hobbies"),
+                SizedBox(width: 12,),
+              ],
+            );
+          }
         ),
       ),
     );

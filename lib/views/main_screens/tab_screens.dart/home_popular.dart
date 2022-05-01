@@ -20,7 +20,7 @@ class _PopularTabState extends State<PopularTab> {
         child: ListView(
           children: [
             FutureBuilder(
-            future: Post.getReddits(context),
+            future: Post.getPosts(context),
             builder: (BuildContext context, AsyncSnapshot<List<Post>> post) {
             return MediaQuery.removePadding(
               removeTop: true,
