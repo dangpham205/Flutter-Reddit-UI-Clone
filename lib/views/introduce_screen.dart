@@ -18,7 +18,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
     return Stack(
       children: [
         Image.asset(        //background của màn
-          "assets/cat.gif",
+          "assets/image/cat.gif",
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
@@ -38,7 +38,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                       Flexible(child: Container(), flex: 2,),
                       const CircleAvatar(
                         radius: 26,
-                        backgroundImage: AssetImage('assets/reddit_logo.png'),
+                        backgroundImage: AssetImage('assets/image/reddit_logo.png'),
                       ),
                       Flexible(child: Container(), flex: 5,),
                       const Text('Dive into', style: TextStyle(fontSize: 32, color: Colors.white),),
@@ -85,7 +85,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
-                          logoImg: 'assets/gg_logo.png', 
+                          logoImg: 'assets/image/gg_logo.png', 
                           text: 'Sign up with Google',
                         )
                       ),
@@ -95,7 +95,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
-                          logoImg: 'assets/apple_logo.jpg', 
+                          logoImg: 'assets/image/apple_logo.jpg', 
                           text: 'Sign up with Apple',
                         )
                       ),
@@ -105,7 +105,7 @@ class _IntroduceScreenState extends State<IntroduceScreen> {
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BaseScreen()));
                         },
                         child: const SignUpWithButton(
-                          logoImg: 'assets/mail_logo.png', 
+                          logoImg: 'assets/image/mail_logo.png', 
                           text: 'Sign up with Email',
                         ),
                       ),

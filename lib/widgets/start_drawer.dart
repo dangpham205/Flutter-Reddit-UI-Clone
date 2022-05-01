@@ -44,7 +44,7 @@ class _StartDrawerState extends State<StartDrawer> {
                   ],
                 ),
                 const SizedBox(height: 14,),
-                drawerItem(text: "r/visitedreddit",avatar: "assets/logo1.png",haveFavorite: false),
+                drawerItem(text: "r/visitedreddit",avatar: "assets/image/logo1.png",haveFavorite: false),
                 const Divider(color: dividerColor,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

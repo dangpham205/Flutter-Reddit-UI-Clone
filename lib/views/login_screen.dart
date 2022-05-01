@@ -31,7 +31,7 @@ class _LogInScreenState extends State<LogInScreen> {
         backgroundColor: Colors.white,
         title: const CircleAvatar(
           radius: 16,
-          backgroundImage: AssetImage('assets/reddit_logo.png'),
+          backgroundImage: AssetImage('assets/image/reddit_logo.png'),
         ),
         actions: [
           TextButton(                                   //chat

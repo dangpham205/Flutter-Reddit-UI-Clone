@@ -3,28 +3,28 @@
         {
             "id": "1",
             "name": "cscareerquestions",
-            "avatarUrl": "assets/logo1.png",
+            "avatarUrl": "assets/image/logo1.png",
             "bio": "This is a reddit channel",
             "members": 10000
         },
         {
             "id": "2",
             "name": "announcements",
-            "avatarUrl": "assets/logo2.png",
+            "avatarUrl": "assets/image/logo2.png",
             "bio": "This is a reddit channel",
             "members": 12300
         },
         {
             "id": "3",
             "name": "dogecoin",
-            "avatarUrl": "assets/logo3.png",
+            "avatarUrl": "assets/image/logo3.png",
             "bio": "This is a reddit channel",
             "members": 35400
         },
         {
             "id": "4",
             "name": "randommemes",
-            "avatarUrl": "assets/logo4.png",
+            "avatarUrl": "assets/image/logo4.png",
             "bio": "This is a reddit channel",
             "members": 4564500
         }

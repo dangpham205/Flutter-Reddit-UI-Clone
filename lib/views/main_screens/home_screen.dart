@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/home_home.dart';
 import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/home_popular.dart';
+import 'package:midterm_519h0277/widgets/end_drawer.dart';
 import 'package:midterm_519h0277/widgets/start_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 2,
       child: Scaffold(
         drawer: const StartDrawer(),
+        endDrawer: const EndDrawer(),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
@@ -56,13 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-    
-              }, 
-              child: const CircleAvatar(
-                radius: 16,
-                backgroundImage: AssetImage('assets/reddit_avatar.png'),
+            Builder(
+              builder: (context) => TextButton(
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();   //openenddrawer
+                }, 
+                child: const CircleAvatar(
+                  radius: 16,
+                  backgroundImage: AssetImage('assets/image/reddit_avatar.png'),
+                ),
               ),
             ),
           ],
