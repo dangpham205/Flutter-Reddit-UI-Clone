@@ -85,7 +85,7 @@ class _EndDrawerState extends State<EndDrawer> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Icon(Icons.circle, color: redditColor,size: 12,),
                                       Text(' Online Status: On', style: TextStyle(color: redditColor),)
                                     ],
@@ -101,14 +101,14 @@ class _EndDrawerState extends State<EndDrawer> {
                     )
                   ],
                 ),
-                Padding(
+                Padding(      //nút Create Avatar
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: InkWell(
                     onTap: () {
                       
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(26.0),
@@ -125,11 +125,121 @@ class _EndDrawerState extends State<EndDrawer> {
                         ],
                       ),),
                   ),
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        height: 50,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.ac_unit, color: Color.fromARGB(255, 31, 16, 237),),
+                              const SizedBox(width: 8,),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                                  Text('Karma', style: TextStyle(color: textColor2, fontSize: 12),)
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(width: 1,height: 40,color: dividerColor,),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        height: 50,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.cake, color: Color.fromARGB(255, 31, 16, 237),),
+                              const SizedBox(width: 8,),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text('1y 1m', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                                  Text('Reddit age', style: TextStyle(color: textColor2, fontSize: 12),)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 4.0),
+                  child: Divider(color: dividerColor, thickness: 1,),
+                ),
+                drawerItem(icon: Icons.person_outline, text: 'My Profile'),
+                const SizedBox(height: 4,),
+                drawerItem(icon: Icons.add, text: 'Create a community'),
+                const SizedBox(height: 4,),
+                drawerItem(icon: Icons.money, text: 'Reddit Coins'),
+                const SizedBox(height: 4,),
+                drawerItem(icon: Icons.shield_outlined, text: 'Reddit Premium'),
+                const SizedBox(height: 4,),
+                drawerItem(icon: Icons.bookmark_border, text: 'Saved'),
+                Flexible(child: Container(), flex: 1,),
+                drawerItem(icon: Icons.settings, text: 'Settings'),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+
+  Widget drawerItem(
+      {required IconData icon,
+      required String text,
+      String? subText,
+      VoidCallback? function,
+      }) {
+    
+    return InkWell(
+      onTap: () {
+        
+      },
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 6.0,top: 6),
+            child: Row(
+              children: [
+                Icon(icon, size: 18,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 14.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(text, style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 14),),
+                      subText == null ?
+                      Container()
+                      : Text(subText, style: const TextStyle(color: textColor2, fontSize: 12),)
+                    ],
+                  ),
+                ),                
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
