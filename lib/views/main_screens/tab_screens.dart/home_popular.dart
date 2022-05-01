@@ -50,7 +50,7 @@ class _PopularTabState extends State<PopularTab> {
                           onTap: () {
                             
                           },
-                          child: Container(
+                          child: SizedBox(
                             width: 80,
                             height: 50,
                             child: Row(

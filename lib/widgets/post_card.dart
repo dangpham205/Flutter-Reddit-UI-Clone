@@ -106,7 +106,58 @@ class PostCard extends StatelessWidget {
                 image: AssetImage(post.imageUrl),
                 fit: BoxFit.fitWidth,
               )
-              : Container()
+              : Container(),
+              Padding(                                      //bottom cua post card
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: Row(
+                            children: [
+                              const Icon(Icons.arrow_circle_up, color: textColor2,),
+                              const SizedBox(width: 8,),
+                              Text(post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                              const SizedBox(width: 8,),
+                              const Icon(Icons.arrow_circle_down, color: textColor2,),
+
+                            ],
+                          )),
+                          Expanded(child: Row(
+                            children: [
+                              const SizedBox(width: 8,),
+                              const Icon(Icons.chat_bubble_outline, color: textColor2,),
+                              const SizedBox(width: 8,),
+                              Text(post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                            ],
+                          )),
+                        ],
+                      )
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: const [
+                                Icon(Icons.share_outlined, color: textColor2,),
+                                SizedBox(width: 8,),
+                                Text('Share', style: TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                              ],
+                            ),
+                          ),
+                          const Icon(Icons.card_giftcard_outlined, color: textColor2,),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

@@ -37,10 +37,24 @@
             "title": "Section 1.10.32 of 'de Finibus Bonorum et Malorum'",
             "caption": "",
             "imageUrl": "assets/image/cat.gif",
-            "upvotes": 50000,
+            "upvotes": 5000,
             "comments": 6913,
             "isMember": "false",
             "awards": 1
+        },
+        {
+            "id": "4",
+            "channel": "descendantofarow",
+            "avatarUrl": "assets/image/logo3.png",
+            "username": "RandomUser201",
+            "time": "3 days",
+            "title": "This crashes because Expanded is not a descendant of a Flex widget",
+            "caption": "",
+            "imageUrl": "assets/image/post1.jpg",
+            "upvotes": 500,
+            "comments": 691,
+            "isMember": "true",
+            "awards": 2
         }
     ] 
 }

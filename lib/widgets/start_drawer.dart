@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/widgets/reddit_card.dart';
@@ -18,7 +17,7 @@ class _StartDrawerState extends State<StartDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: Drawer(
         child: Material(

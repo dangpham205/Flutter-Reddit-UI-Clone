@@ -11,7 +11,7 @@ class EndDrawer extends StatefulWidget {
 class _EndDrawerState extends State<EndDrawer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.76,
       child: Drawer(
         child: Material(
@@ -27,8 +27,7 @@ class _EndDrawerState extends State<EndDrawer> {
                     Stack(
                       alignment: Alignment.center,    //center casc children
                       children: [
-                        Container(
-                          // color: textColor2,
+                        SizedBox(
                           height: 250, 
                           width: MediaQuery.of(context).size.width*0.66, 
                         ),
@@ -131,7 +130,7 @@ class _EndDrawerState extends State<EndDrawer> {
                   children: [
                     Flexible(
                       flex: 1,
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -157,7 +156,7 @@ class _EndDrawerState extends State<EndDrawer> {
                     Container(width: 1,height: 40,color: dividerColor,),
                     Flexible(
                       flex: 1,
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
