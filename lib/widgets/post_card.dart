@@ -97,11 +97,9 @@ class PostCard extends StatelessWidget {
               post.caption != "" 
               ? Text(post.caption, style: const TextStyle(color: textColor2,fontSize: 12),)
               : post.imageUrl != ""
-              ? Container(
-                          child: Image(
-                            image: AssetImage(post.imageUrl),
-                            fit: BoxFit.fitHeight,
-                          ),
+              ? Image(
+                image: AssetImage(post.imageUrl),
+                fit: BoxFit.fitWidth,
               )
               : Container()
             ],
