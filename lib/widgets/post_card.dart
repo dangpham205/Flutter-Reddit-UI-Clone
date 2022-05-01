@@ -59,36 +59,41 @@ class PostCard extends StatelessWidget {
                   const Icon(Icons.more_vert, color: textColor2,size: 20,)
                 ],
               ),
-              const SizedBox(height: 8,),
               post.awards == 0          //award cua~ post
               ? Container()
               : post.awards == 1
-              ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage: AssetImage('assets/image/aw1.jpg'),
-                  ),
-                  SizedBox(width: 4,),
-                  Text('1 Award', style: TextStyle(color: textColor2, fontSize: 12),)
-                ],
+              ? Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    CircleAvatar(
+                      radius: 10,
+                      backgroundImage: AssetImage('assets/image/aw1.jpg'),
+                    ),
+                    SizedBox(width: 4,),
+                    Text('1 Award', style: TextStyle(color: textColor2, fontSize: 12),)
+                  ],
+                ),
               )
-              : Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage: AssetImage('assets/image/aw2.jpg'),
-                  ),
-                  SizedBox(width: 4,),
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage: AssetImage('assets/image/aw3.jpg'),
-                  ),
-                  SizedBox(width: 4,),
-                  Text('2 Awards', style: TextStyle(color: textColor2, fontSize: 12),)
-                ],
+              : Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    CircleAvatar(
+                      radius: 10,
+                      backgroundImage: AssetImage('assets/image/aw2.jpg'),
+                    ),
+                    SizedBox(width: 4,),
+                    CircleAvatar(
+                      radius: 10,
+                      backgroundImage: AssetImage('assets/image/aw3.jpg'),
+                    ),
+                    SizedBox(width: 4,),
+                    Text('2 Awards', style: TextStyle(color: textColor2, fontSize: 12),)
+                  ],
+                ),
               ),
               Padding(                                //title
                 padding: const EdgeInsets.only(top: 8.0, bottom: 8),
