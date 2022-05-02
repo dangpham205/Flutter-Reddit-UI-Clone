@@ -1,0 +1,44 @@
+{
+    "notification": [
+        {
+            "id": "1",
+            "title": "MichaelJackson",
+            "subtitle": "Omg guys look what MJ did! (not) do!",
+            "avatarUrl": "assets/image/logo1.png",
+            "time": "today",
+            "isPost": "false"
+        },
+        {
+            "id": "2",
+            "title": "r/learnmachinelearning: Suggested",
+            "subtitle": "Top Post: Different Distance Measures!",
+            "avatarUrl": "assets/image/logo2.png",
+            "time": "today",
+            "isPost": "true"
+        },
+        {
+            "id": "3",
+            "title": "r/ModernistArchitecture: Suggested",
+            "subtitle": " Top Post: Headquarters of Fuji TV ",
+            "avatarUrl": "assets/image/logo3.png",
+            "time": "this week",
+            "isPost": "false"
+        },
+        {
+            "id": "4",
+            "title": "MichaelJackson",
+            "subtitle": "Omg guys look what MJ did! (not) do!",
+            "avatarUrl": "assets/image/logo4.png",
+            "time": "other",
+            "isPost": "true"
+        },
+        {
+            "id": "5",
+            "title": "r/learnmachinelearning: Suggested",
+            "subtitle": "Top Post: Different Distance Measures!",
+            "avatarUrl": "assets/image/post1.jpg",
+            "time": "other",
+            "isPost": "false"
+        }
+    ] 
+}
