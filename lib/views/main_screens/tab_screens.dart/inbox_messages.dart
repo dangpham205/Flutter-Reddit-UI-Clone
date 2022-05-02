@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/models/message.dart';
+import 'package:midterm_519h0277/widgets/message_card.dart';
+
+import '../../../constants/colors.dart';
 
 class MessagesTab extends StatefulWidget {
   const MessagesTab({ Key? key }) : super(key: key);
@@ -10,8 +14,39 @@ class MessagesTab extends StatefulWidget {
 class MessagesStateTab extends State<MessagesTab> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      body: Container(
+        color: seperateColor,
+        child: ListView(
+          children: [
+            FutureBuilder(
+            future: Message.getMessages(context),
+            builder: (BuildContext context, AsyncSnapshot<List<Message>> message) {
+            return MediaQuery.removePadding(
+              removeTop: true,
+              context: context,
+              child: Column(
+                children: [
+                  ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: message.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      var itemData = message.data![index];
+                      return MessageCard(
+                        message: itemData,
+                      );
+                    }
+                  ),
+                ],
+              ),
+            );
+            }
+          ),
+          ],
+        ),
+      ),
     );
   }
 }
