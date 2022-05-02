@@ -73,7 +73,7 @@
         {
             "id": "6",
             "channel": "cscareerquestions",
-            "avatarUrl": "assets/image/logo4.png",
+            "avatarUrl": "assets/image/post1.jpg",
             "username": "jogaeu1",
             "time": "4h",
             "title": "I'm being bullied by my manager",
@@ -82,6 +82,34 @@
             "upvotes": 52,
             "comments": 39,
             "isMember": "false",
+            "awards": 2
+        },
+        {
+            "id": "7",
+            "channel": "ThatsInsane",
+            "avatarUrl": "assets/image/post2.jpg",
+            "username": "Luxand_com",
+            "time": "11h",
+            "title": "Face recognition SDK for Python - FaceSDK detects 70 facial features and works with both images and videos.",
+            "caption": "",
+            "imageUrl": "assets/image/post3.jpg",
+            "upvotes": 4727,
+            "comments": 780,
+            "isMember": "true",
+            "awards": 1
+        },
+        {
+            "id": "7",
+            "channel": "JetBrains_official",
+            "avatarUrl": "assets/image/post1.jpg",
+            "username": "ramdomguys123",
+            "time": "11h",
+            "title": "spikes 3%+ lol",
+            "caption": "",
+            "imageUrl": "assets/image/post4.jpg",
+            "upvotes": 52,
+            "comments": 39,
+            "isMember": "true",
             "awards": 2
         }
     ] 

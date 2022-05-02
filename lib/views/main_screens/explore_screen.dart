@@ -60,44 +60,51 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            const Category(),
-            ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: [
-                FutureBuilder(
-                  future: Post.getPostsWithImage(context),
-                  builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
-                    return StaggeredGridView.countBuilder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      crossAxisCount: 3, 
-                      itemCount: post.data?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        return InkWell(
-                          child: Image(
-                            image: AssetImage(post.data![index].imageUrl),
-                            fit: BoxFit.fitWidth,
-                          ),
-                          onTap: () {
-                          },
-                        );
-                      },
-                      staggeredTileBuilder: (index) => StaggeredTile.count(
-                        (index % 7 == 0) ? 2 : 1,     //cross axis cells count
-                        (index % 7 == 0) ? 2 : 1,     //main axis cells count
-                      ),
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                    );
-                  }
-                )
-              ],
-                  ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Category(),
+              ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+            // physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                children: [
+                  FutureBuilder(
+                    future: Post.getPostsWithImage(context),
+                    builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
+                      return StaggeredGridView.countBuilder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        crossAxisCount: 3, 
+                        itemCount: post.data?.length ?? 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          return InkWell(
+                            child: Image(
+                              image: AssetImage(post.data![index].imageUrl),
+                              fit: BoxFit.cover,
+                            ),
+                            onTap: () {
+                            },
+                          );
+                        },
+                        staggeredTileBuilder: (index) {
+                          return StaggeredTile.count(
+                            // (index % 5 == 1) ? 1 : 2,
+                            // (index % 5 == 0) ? 1 : 2,
+                            (index % 7 == 0) ? 2 : 1,     //cross axis cells count
+                            (index % 7 == 0) ? 2 : 1, 
+                          );
+                        },
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                      );
+                    }
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
     );
   }
