@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
+import 'package:midterm_519h0277/views/function_screens/chat_box_screen.dart';
 import 'package:midterm_519h0277/views/function_screens/new_chat_screen.dart';
 
 import '../../constants/colors.dart';
@@ -63,40 +64,45 @@ class _ChatScreenState extends State<ChatScreen> {
                       itemCount: redditor.data?.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
                         var itemData = redditor.data![index];
-                        return InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                              child: ListTile(
-                                leading: CircleAvatar(backgroundImage: AssetImage(itemData.avatarUrl), radius: 20,),
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                        return Column(
+                          children: [
+                            InkWell(
+                              onTap: () {(
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatBoxScreen(redditor: itemData))));
+                              },
+                              child: Container(
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                                  child: ListTile(
+                                    leading: CircleAvatar(backgroundImage: AssetImage(itemData.avatarUrl), radius: 20,),
+                                    title: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            itemData.name,
-                                            style: const TextStyle(
-                                                color: textColor2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700),
-                                          )
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                itemData.name,
+                                                style: const TextStyle(
+                                                    color: textColor2,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w700),
+                                              )
+                                            ),
+                                            const Text('10:26 AM', style: TextStyle(fontSize: 13, color: textColor2),)
+                                          ],
                                         ),
-                                        const Text('10:26 AM', style: TextStyle(fontSize: 13, color: textColor2),)
+                                        const SizedBox(height: 4,),
+                                        const Text('This is the last message in the convo', style: TextStyle(fontSize: 12),)
                                       ],
                                     ),
-                                    const SizedBox(height: 4,),
-                                    const Text('This is the last message in the convo', style: TextStyle(fontSize: 12),)
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                            Container(color: dividerColor, height: 1,)
+                          ],
                         );
                       }
                     ),
