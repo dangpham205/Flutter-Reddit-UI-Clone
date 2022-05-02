@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
+import 'package:midterm_519h0277/models/redditor.dart';
+import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
 
 class EndDrawer extends StatefulWidget {
   const EndDrawer({ Key? key }) : super(key: key);
@@ -9,6 +13,22 @@ class EndDrawer extends StatefulWidget {
 }
 
 class _EndDrawerState extends State<EndDrawer> {
+
+  late Redditor redditor;
+
+  void getRedditor1(BuildContext context) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/redditor.json");
+    var tagObjsJson = jsonDecode(data)['redditor'] as List;
+    List<Redditor> redditors = tagObjsJson.map((tagJson) => Redditor.fromJSON(tagJson)).toList();
+    redditor = redditors[0];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -185,7 +205,16 @@ class _EndDrawerState extends State<EndDrawer> {
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Divider(color: dividerColor, thickness: 1,),
                 ),
-                drawerItem(icon: Icons.person_outline, text: 'My Profile'),
+                drawerItem(
+                  icon: Icons.person_outline,
+                  text: 'My Profile',
+                  function: () {
+                    getRedditor1(context);
+                    Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                    });
+                  }
+                ),
                 const SizedBox(height: 4,),
                 drawerItem(icon: Icons.add, text: 'Create a community'),
                 const SizedBox(height: 4,),
@@ -213,9 +242,7 @@ class _EndDrawerState extends State<EndDrawer> {
       }) {
     
     return InkWell(
-      onTap: () {
-        
-      },
+      onTap: function,
       child: Column(
         children: [
           Padding(
