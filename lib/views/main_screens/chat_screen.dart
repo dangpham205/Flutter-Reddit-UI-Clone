@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/function_screens/new_chat_screen.dart';
 
+import '../../constants/colors.dart';
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
 
@@ -42,6 +44,70 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ],
         ),
+        body: Container(
+          color: seperateColor,
+          child: ListView(
+            children: [
+              FutureBuilder(
+              future: Redditor.getRedditors(context),
+              builder: (BuildContext context, AsyncSnapshot<List<Redditor>> redditor) {
+              return MediaQuery.removePadding(
+                removeTop: true,
+                context: context,
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: redditor.data?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        var itemData = redditor.data![index];
+                        return InkWell(
+                          onTap: () {
+
+                          },
+                          child: Container(
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                              child: ListTile(
+                                leading: CircleAvatar(backgroundImage: AssetImage(itemData.avatarUrl), radius: 20,),
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            itemData.name,
+                                            style: const TextStyle(
+                                                color: textColor2,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ),
+                                        const Text('10:26 AM', style: TextStyle(fontSize: 13, color: textColor2),)
+                                      ],
+                                    ),
+                                    const SizedBox(height: 4,),
+                                    const Text('This is the last message in the convo', style: TextStyle(fontSize: 12),)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                    ),
+                  ],
+                ),
+              );
+              }
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

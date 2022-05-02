@@ -4,21 +4,21 @@
             "id": "1",
             "name": "Old-Complex567",
             "avatarUrl": "assets/image/reddit_figure.png",
-            "backgroundUrl": "assets/image/logo1.png",
+            "backgroundUrl": "assets/image/post1.jpg",
             "bio": "This is a reddit bio",
             "followers": 0,
             "karma": 1,
-            "age": "1y"
+            "age": "1y1m"
         },
         {
-            "id": "1",
-            "name": "cscareerquestions",
-            "avatarUrl": "assets/image/logo1.png",
-            "backgroundUrl": "assets/image/logo1.png",
-            "bio": "This is a reddit channel",
+            "id": "2",
+            "name": "developer-27",
+            "avatarUrl": "assets/image/reddit_figure.png",
+            "backgroundUrl": "assets/image/post2.jpg",
+            "bio": "Codename = Apollon",
             "followers": 0,
-            "karma": 1,
-            "age": "1y"
+            "karma": 1872,
+            "age": "2y"
         }
     ] 
 }
