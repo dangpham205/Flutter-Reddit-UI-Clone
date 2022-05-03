@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/models/post.dart';
+import 'package:midterm_519h0277/models/reddit.dart';
+import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
 
 import '../constants/colors.dart';
 import '../models/redditor.dart';
@@ -20,6 +22,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   
   late Redditor redditor;
+  late Reddit reddit;
 
   void getRedditor1(BuildContext context) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/redditor.json");
@@ -32,10 +35,22 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
+  void getReddits(BuildContext context) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/reddit.json");
+    var tagObjsJson = jsonDecode(data)['reddit'] as List;
+    List<Reddit> reddits = tagObjsJson.map((tagJson) => Reddit.fromJSON(tagJson)).toList();
+    for (Reddit r in reddits){
+      if (r.name == widget.post.channel){
+        reddit = r;
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     getRedditor1(context);
+    getReddits(context);
   }
 
 
@@ -61,7 +76,13 @@ class _PostCardState extends State<PostCard> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold),),
+                      InkWell(
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
+                          });
+                        },
+                        child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold),)),
                       const SizedBox(height: 6,),
                       InkWell(
                         onTap: () {

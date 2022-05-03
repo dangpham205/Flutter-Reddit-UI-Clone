@@ -30,7 +30,7 @@
         },
         {
             "id": "3",
-            "channel": "therewasanattempt",
+            "channel": "announcements",
             "avatarUrl": "assets/image/logo3.png",
             "username": "Luxand_com",
             "time": "22h",
@@ -44,7 +44,7 @@
         },
         {
             "id": "4",
-            "channel": "descendantofarow",
+            "channel": "randommemes",
             "avatarUrl": "assets/image/logo3.png",
             "username": "developer-27",
             "time": "3 days",
@@ -58,7 +58,7 @@
         },
         {
             "id": "5",
-            "channel": "learnpython",
+            "channel": "cscareerquestions",
             "avatarUrl": "assets/image/aw2.jpg",
             "username": "ramdomguys123",
             "time": "11h",
@@ -72,7 +72,7 @@
         },
         {
             "id": "6",
-            "channel": "cscareerquestions",
+            "channel": "dogecoin",
             "avatarUrl": "assets/image/post1.jpg",
             "username": "Luxand_com",
             "time": "4h",
@@ -86,7 +86,7 @@
         },
         {
             "id": "7",
-            "channel": "ThatsInsane",
+            "channel": "announcements",
             "avatarUrl": "assets/image/post2.jpg",
             "username": "Luxand_com",
             "time": "11h",
@@ -100,7 +100,7 @@
         },
         {
             "id": "7",
-            "channel": "JetBrains_official",
+            "channel": "randommemes",
             "avatarUrl": "assets/image/post1.jpg",
             "username": "ramdomguys123",
             "time": "11h",

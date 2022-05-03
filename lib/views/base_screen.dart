@@ -56,7 +56,7 @@ class _BaseScreenState extends State<BaseScreen> {
         children: const [
           HomeScreen(),
           ExploreScreen(),
-          UploadScreen(),
+          Center(child: Text('Upload screen')),
           ChatScreen(),
           NotificationScreen(),
         ]
@@ -91,7 +91,7 @@ class _BaseScreenState extends State<BaseScreen> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UploadScreen()));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
                     child: Icon(
                       Icons.add,
                       color: tabColor(2),

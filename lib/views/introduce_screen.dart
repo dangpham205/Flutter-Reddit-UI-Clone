@@ -162,6 +162,7 @@ class SignUpWithButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
+            radius: 18,
             backgroundColor: Colors.transparent,
             backgroundImage: AssetImage(logoImg),
           ),
