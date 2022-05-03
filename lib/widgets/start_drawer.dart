@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
+import 'package:midterm_519h0277/views/function_screens/create_community_screen.dart';
 import 'package:midterm_519h0277/widgets/reddit_card.dart';
 
 import '../models/reddit.dart';
@@ -65,9 +66,14 @@ class _StartDrawerState extends State<StartDrawer> {
                     Icon(Icons.arrow_drop_down_sharp, color: textColor2,)
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
-                  child: drawerItem(text: "Create a community",icon: Icons.add ,haveFavorite: false),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateCommunityScreen()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: drawerItem(text: "Create a community",icon: Icons.add ,haveFavorite: false),
+                  ),
                 ),
                 FutureBuilder(
                   future: Reddit.getReddits(context),

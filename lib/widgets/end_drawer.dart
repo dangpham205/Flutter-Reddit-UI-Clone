@@ -5,6 +5,8 @@ import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
 
+import '../views/function_screens/create_community_screen.dart';
+
 class EndDrawer extends StatefulWidget {
   const EndDrawer({ Key? key }) : super(key: key);
 
@@ -216,7 +218,12 @@ class _EndDrawerState extends State<EndDrawer> {
                   }
                 ),
                 const SizedBox(height: 4,),
-                drawerItem(icon: Icons.add, text: 'Create a community'),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateCommunityScreen()));
+                  },
+                  child: drawerItem(icon: Icons.add, text: 'Create a community')
+                ),
                 const SizedBox(height: 4,),
                 drawerItem(icon: Icons.money, text: 'Reddit Coins'),
                 const SizedBox(height: 4,),
