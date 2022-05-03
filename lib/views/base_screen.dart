@@ -53,7 +53,7 @@ class _BaseScreenState extends State<BaseScreen> {
     // user này có thể null vì lúc đầu có thể chưa kết nối tới firebase kịp để get
     return Scaffold(
       body: PageView(
-        children: const[
+        children: const [
           HomeScreen(),
           ExploreScreen(),
           UploadScreen(),
@@ -86,9 +86,17 @@ class _BaseScreenState extends State<BaseScreen> {
                 label: '',
                 backgroundColor: Colors.white),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.add,
-                  color: tabColor(2),
+                icon: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UploadScreen()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Icon(
+                      Icons.add,
+                      color: tabColor(2),
+                    ),
+                  ),
                 ),
                 label: '',
                 backgroundColor: Colors.white),
