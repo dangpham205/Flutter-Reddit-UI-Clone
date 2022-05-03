@@ -1,0 +1,36 @@
+{
+    "comment": [
+        {
+            "id": "1",
+            "name": "cscareerquestions",
+            "avatarUrl": "assets/image/logo1.png",
+            "time": "2h",
+            "comment": "comment number 1",
+            "upvotes": 10000
+        },
+        {
+            "id": "2",
+            "name": "announcements",
+            "avatarUrl": "assets/image/logo2.png",
+            "time": "3 days",
+            "comment": "comment number 2",
+            "upvotes": 12300
+        },
+        {
+            "id": "3",
+            "name": "dogecoin",
+            "avatarUrl": "assets/image/logo3.png",
+            "time": "11h",
+            "comment": "comment number 3",
+            "upvotes": 35400
+        },
+        {
+            "id": "4",
+            "name": "randommemes",
+            "avatarUrl": "assets/image/logo4.png",
+            "time": "7 days",
+            "comment": "comment number 4",
+            "upvotes": 45645
+        }
+    ] 
+}
