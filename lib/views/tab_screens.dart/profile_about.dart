@@ -97,11 +97,13 @@ class _AboutTabState extends State<AboutTab> {
           ),
         ),
         Container(
-          height: 30,
+          height: 40,
           padding: const EdgeInsets.only(left: 24),
           width: MediaQuery.of(context).size.width,
           color: seperateColor,
-          child: const Center(child: Text("TROPHIES", style: TextStyle(fontWeight: FontWeight.bold, color: textColor2),))
+          child: const Align(
+            alignment: Alignment.centerLeft,
+            child: Text("TROPHIES", style: TextStyle(fontWeight: FontWeight.bold, color: textColor2),))
         )
       ],
     );

@@ -26,6 +26,7 @@ class _EndDrawerState extends State<EndDrawer> {
   @override
   void initState() {
     super.initState();
+    getRedditor1(context);
   }
 
 
@@ -209,7 +210,6 @@ class _EndDrawerState extends State<EndDrawer> {
                   icon: Icons.person_outline,
                   text: 'My Profile',
                   function: () {
-                    getRedditor1(context);
                     Future.delayed(const Duration(milliseconds: 100)).then((value) {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
                     });

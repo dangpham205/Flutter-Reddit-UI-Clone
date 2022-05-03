@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
+import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
 import 'package:midterm_519h0277/widgets/reddit_card.dart';
 
 import '../models/reddit.dart';
@@ -13,6 +16,23 @@ class StartDrawer extends StatefulWidget {
 
 class _StartDrawerState extends State<StartDrawer> {
 
+  late Reddit redditchannel;
+
+  void getRedditChannel(BuildContext context, String channelname) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/reddit.json");
+    var tagObjsJson = jsonDecode(data)['reddit'] as List;
+    List<Reddit> reddits = tagObjsJson.map((tagJson) => Reddit.fromJSON(tagJson)).toList();
+    for (Reddit r in reddits){
+      if (r.name == channelname){
+        redditchannel = r;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
   
 
   @override
@@ -61,8 +81,17 @@ class _StartDrawerState extends State<StartDrawer> {
                       itemCount: reddit.data?.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
                         var itemData = reddit.data![index];
-                        return RedditCard(
-                          reddit: itemData,
+                        return InkWell(
+                          onTap: () {
+                            getRedditChannel(context, itemData.name);
+                            Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: redditchannel)));
+                            });
+                          },
+                          child: RedditCard(
+                            reddit: itemData,
+                            withJoinButton: false,
+                          ),
                         );
                       }
                     ),

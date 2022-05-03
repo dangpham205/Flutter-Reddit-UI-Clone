@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/home_home.dart';
-import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/home_popular.dart';
+import 'package:midterm_519h0277/views/tab_screens.dart/home_home.dart';
+import 'package:midterm_519h0277/views/tab_screens.dart/home_popular.dart';
 import 'package:midterm_519h0277/widgets/end_drawer.dart';
 import 'package:midterm_519h0277/widgets/start_drawer.dart';
 

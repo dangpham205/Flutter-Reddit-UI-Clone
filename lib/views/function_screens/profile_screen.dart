@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
-import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/profile_about.dart';
-import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/profile_comment.dart';
-import 'package:midterm_519h0277/views/main_screens/tab_screens.dart/profile_post.dart';
+import 'package:midterm_519h0277/views/tab_screens.dart/profile_about.dart';
+import 'package:midterm_519h0277/views/tab_screens.dart/profile_comment.dart';
+import 'package:midterm_519h0277/views/tab_screens.dart/profile_post.dart';
 
 import '../../constants/colors.dart';
 

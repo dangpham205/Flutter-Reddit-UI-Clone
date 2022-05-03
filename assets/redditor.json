@@ -13,9 +13,29 @@
         {
             "id": "2",
             "name": "developer-27",
-            "avatarUrl": "assets/image/figure2.png",
-            "backgroundUrl": "assets/image/post2.jpg",
+            "avatarUrl": "assets/image/logo3.png",
+            "backgroundUrl": "assets/image/post3.jpg",
             "bio": "Codename = Apollon",
+            "followers": 0,
+            "karma": 1872,
+            "age": "2y"
+        },
+        {
+            "id": "3",
+            "name": "ramdomguys123",
+            "avatarUrl": "assets/image/logo1.png",
+            "backgroundUrl": "assets/image/bg.jpg",
+            "bio": "bio of ramdomguys123",
+            "followers": 0,
+            "karma": 1872,
+            "age": "2y"
+        },
+        {
+            "id": "4",
+            "name": "Luxand_com",
+            "avatarUrl": "assets/image/logo2.png",
+            "backgroundUrl": "assets/image/bg1.jpg",
+            "bio": "bio of Luxand_com",
             "followers": 0,
             "karma": 1872,
             "age": "2y"

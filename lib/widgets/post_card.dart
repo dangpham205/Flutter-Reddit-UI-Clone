@@ -1,13 +1,43 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/models/post.dart';
 
 import '../constants/colors.dart';
+import '../models/redditor.dart';
+import '../views/function_screens/profile_screen.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
   
   final Post post;
 
   const PostCard({ Key? key, required this.post }) : super(key: key);
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  
+  late Redditor redditor;
+
+  void getRedditor1(BuildContext context) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/redditor.json");
+    var tagObjsJson = jsonDecode(data)['redditor'] as List;
+    List<Redditor> redditors = tagObjsJson.map((tagJson) => Redditor.fromJSON(tagJson)).toList();
+    for (Redditor r in redditors){
+      if (r.name == widget.post.username){
+        redditor = r;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getRedditor1(context);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +54,33 @@ class PostCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 16,
-                    backgroundImage: AssetImage(post.avatarUrl),
+                    backgroundImage: AssetImage(widget.post.avatarUrl),
                     backgroundColor: seperateColor,
                   ),
                   const SizedBox(width: 8,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("r/"+post.channel, style: const TextStyle(fontWeight: FontWeight.bold),),
+                      Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold),),
                       const SizedBox(height: 6,),
-                      Row(
-                        children: [
-                          Text("u/"+post.username + " ", style: const TextStyle(color: textColor2, fontSize: 12),),
-                          const Icon(Icons.circle, color: textColor2,size: 4,),
-                          Text(" " + post.time, style: const TextStyle(color: textColor2, fontSize: 12))
-                        ],
+                      InkWell(
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 12),),
+                            const Icon(Icons.circle, color: textColor2,size: 4,),
+                            Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
+                          ],
+                        ),
                       )
                     ],
                   ),
                   Expanded(child: Container()),
-                  post.isMember == "true" 
+                  widget.post.isMember == "true" 
                   ? Container()
                   : Container(
                     padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
@@ -59,9 +96,9 @@ class PostCard extends StatelessWidget {
                   const Icon(Icons.more_vert, color: textColor2,size: 20,)
                 ],
               ),
-              post.awards == 0          //award cua~ post
+              widget.post.awards == 0          //award cua~ post
               ? Container()
-              : post.awards == 1
+              : widget.post.awards == 1
               ? Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
@@ -97,13 +134,13 @@ class PostCard extends StatelessWidget {
               ),
               Padding(                                //title
                 padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                child: Text(post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
               ),
-              post.caption != "" 
-              ? Text(post.caption, style: const TextStyle(color: textColor2,fontSize: 12),)
-              : post.imageUrl != ""
+              widget.post.caption != "" 
+              ? Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 12),)
+              : widget.post.imageUrl != ""
               ? Image(
-                image: AssetImage(post.imageUrl),
+                image: AssetImage(widget.post.imageUrl),
                 fit: BoxFit.fitWidth,
               )
               : Container(),
@@ -121,7 +158,7 @@ class PostCard extends StatelessWidget {
                             children: [
                               const Icon(Icons.arrow_circle_up, color: textColor2,),
                               const SizedBox(width: 8,),
-                              Text(post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                              Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
                               const SizedBox(width: 8,),
                               const Icon(Icons.arrow_circle_down, color: textColor2,),
 
@@ -132,7 +169,7 @@ class PostCard extends StatelessWidget {
                               const SizedBox(width: 8,),
                               const Icon(Icons.chat_bubble_outline, color: textColor2,),
                               const SizedBox(width: 8,),
-                              Text(post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                              Text(widget.post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
                             ],
                           )),
                         ],

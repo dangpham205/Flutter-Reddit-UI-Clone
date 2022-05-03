@@ -4,7 +4,8 @@ import 'package:midterm_519h0277/models/reddit.dart';
 
 class RedditCard extends StatelessWidget {
   final Reddit reddit;
-  const RedditCard({ Key? key, required this.reddit }) : super(key: key);
+  final bool withJoinButton;
+  const RedditCard({ Key? key, required this.reddit, required this.withJoinButton }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,19 @@ class RedditCard extends StatelessWidget {
             ),
             Text("   r/" + reddit.name),
             Expanded(child: Container()),
-            const Icon(Icons.star_border, color: textColor2,)
+            withJoinButton ?
+            Container(            //start direct chat o dau screen
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(26.0),
+                  top: Radius.circular(26.0)
+                ),
+                color: redditColor,
+              ),
+              child: const Text('Join', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 12),),
+            )
+            :  const Icon(Icons.star_border, color: textColor2,)
           ],
         ),
         const SizedBox(height: 20,)
