@@ -113,10 +113,8 @@ class BottomOptions extends StatelessWidget {
 
 
   const BottomOptions({
-    Key? key,
-    required IconData icon,
-    required String text
-  }) : icon = icon, text = text,super(key: key);
+    Key? key, required this.icon, required this.text
+  }) : super(key: key);
 
   final IconData icon;
   final String text;

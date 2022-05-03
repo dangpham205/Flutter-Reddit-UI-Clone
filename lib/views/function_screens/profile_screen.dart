@@ -5,6 +5,7 @@ import 'package:midterm_519h0277/views/tab_screens.dart/profile_comment.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/profile_post.dart';
 
 import '../../constants/colors.dart';
+import '../../widgets/dialog_option_without_tick.dart';
 
 class ProfileScreen extends StatefulWidget {
   final Redditor redditor;
@@ -37,11 +38,96 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: Text(widget.redditor.name),
               pinned: true,
               expandedHeight: MediaQuery.of(context).size.height * 0.50,
-              actions: const [
-                Icon(Icons.share_outlined, color: Colors.white,),
-                SizedBox(width: 12,),
-                Icon(Icons.more_vert, color: Colors.white,),
-                SizedBox(width: 8,),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context, 
+                      builder: (context) => Dialog(
+                        alignment: Alignment.bottomCenter,
+                        // insetPadding: EdgeInsets.only(top: 100),
+                        insetPadding: EdgeInsets.zero,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(12.0),
+                              top: Radius.circular(12.0)
+                            ),
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // SizedBox(height: 4,),
+                              Center(
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.vertical(
+                                      bottom: Radius.circular(26.0),
+                                      top: Radius.circular(26.0)
+                                    ),
+                                    color: dividerColor,
+                                  ),
+                                  width: 36,
+                                  height: 4,
+                                ),
+                              ),
+                              const DialogOption2(icon: Icons.wechat, text: 'Invite someone to chat'),
+                              const DialogOption2(icon: Icons.person, text: 'Share profile'),
+                            ],
+                          ),
+                        ),
+                      ) 
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Icon(Icons.share_outlined, color: Colors.white,),
+                  ),
+                ),
+                const SizedBox(width: 12,),
+                widget.redditor.id != "1" ?
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context, 
+                      builder: (context) => Dialog(
+                        alignment: Alignment.bottomCenter,
+                        // insetPadding: EdgeInsets.only(top: 100),
+                        insetPadding: EdgeInsets.zero,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.95,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(12.0),
+                              top: Radius.circular(12.0)
+                            ),
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              DialogOption2(icon: Icons.message, text: 'Send a message'),
+                              DialogOption2(icon: Icons.heart_broken, text: 'Get them help and support'),
+                              DialogOption2(icon: Icons.close, text: 'Block account'),
+                            ],
+                          ),
+                        ),
+                      ) 
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Icon(Icons.more_vert, color: Colors.white,),
+                  ),
+                )
+                : const SizedBox.shrink(),
+                const SizedBox(width: 12,),
               ],
               flexibleSpace: FlexibleSpaceBar(
                 // background: Image.asset(widget.redditor.backgroundUrl, fit: BoxFit.cover,),
