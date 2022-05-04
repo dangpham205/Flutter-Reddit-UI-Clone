@@ -129,9 +129,28 @@ class TopScreenButtons extends StatelessWidget {
                   color: seperateColor,
                   child: InkWell(
                     onTap: () {
-                    showDialog(
+                    showGeneralDialog(
                       context: context, 
-                      builder: (context) => Dialog(
+                      transitionDuration: const Duration(milliseconds: 370),
+                      barrierDismissible: true,
+                      barrierLabel: "Barrier",
+                      barrierColor: Colors.black.withOpacity(0.6),
+                      transitionBuilder: (_, anim, __, child) {
+                        Tween<Offset> tween;
+                        if (anim.status == AnimationStatus.reverse) {
+                          tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
+                        } else {
+                          tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
+                        }
+                        return SlideTransition(
+                          position: tween.animate(anim),
+                          child: FadeTransition(
+                            opacity: anim,
+                            child: child,
+                          ),
+                        );
+                      },
+                      pageBuilder: (_,__,___) => Dialog(
                         alignment: Alignment.bottomCenter,
                         // insetPadding: EdgeInsets.only(top: 100),
                         insetPadding: EdgeInsets.zero,
