@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
+import 'package:midterm_519h0277/views/function_screens/settings_screen.dart';
 
 import '../views/function_screens/create_community_screen.dart';
 
@@ -231,7 +232,11 @@ class _EndDrawerState extends State<EndDrawer> {
                 const SizedBox(height: 4,),
                 drawerItem(icon: Icons.bookmark_border, text: 'Saved'),
                 Flexible(child: Container(), flex: 1,),
-                drawerItem(icon: Icons.settings, text: 'Settings'),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
+                  },
+                  child: drawerItem(icon: Icons.settings, text: 'Settings')),
               ],
             ),
           ),

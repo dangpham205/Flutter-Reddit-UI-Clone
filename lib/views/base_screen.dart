@@ -94,6 +94,7 @@ class _BaseScreenState extends State<BaseScreen> {
                     padding: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
                     child: Icon(
                       Icons.add,
+                      size: 50,
                       color: tabColor(2),
                     ),
                   ),

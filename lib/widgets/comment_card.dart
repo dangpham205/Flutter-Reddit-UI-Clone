@@ -43,6 +43,10 @@ class _CommentCardState extends State<CommentCard> {
           ),
         ),
         Container(
+          height: 1.5,
+          color: seperateColor,
+        ),
+        Container(
           color: Colors.white,                                      //bottom cua post card
           padding: const EdgeInsets.only(top: 8.0, left: 12, right: 12, bottom: 8),
           child: Row(

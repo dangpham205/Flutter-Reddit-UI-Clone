@@ -95,6 +95,73 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ),
           ],
         ),
+        bottomSheet: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: dividerColor,
+            ),
+            color: Colors.white,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(            // online users phía trên khung chat
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      fit: StackFit.loose,
+                      children: const [
+                        Positioned(
+                          left: 15,
+                          // right: -5,
+                          child: CircleAvatar(
+                            radius: 14,
+                            backgroundImage: AssetImage('assets/image/reddit_figure.png'),
+                          ),
+                        ),
+                        CircleAvatar(
+                          radius: 14,
+                          backgroundImage: AssetImage('assets/image/reddit_avatar.png'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Text('2 people are here', style: TextStyle(fontSize: 12, color: textColor2),)
+                ],
+              ),
+              const SizedBox(height: 6,),
+              Container(                                       //chat box
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(12.0),
+                    top: Radius.circular(12.0)
+                  ),
+                  color: seperateColor,
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  children:const [
+                    Expanded(
+                      flex: 1,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Add a comment',
+                          hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                        ),
+                      )
+                    ),
+                    SizedBox(width: 16,),
+                    Icon(Icons.send, color: textColor2,),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
         body: Container(
           color: seperateColor,
           child: ListView(
@@ -201,7 +268,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                               fit: BoxFit.fitWidth,
                             )
                             : Container(),
-                            Padding(                                      //bottom cua post card
+                            Container(                                      //bottom cua post card
                               padding: const EdgeInsets.only(top: 12.0),
                               child: Row(
                                 children: [
@@ -266,6 +333,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           return CommentCard(comment: itemData);
                         }
                       ),
+                      const SizedBox(height: 60,)
                     ],
                   ),
                 );

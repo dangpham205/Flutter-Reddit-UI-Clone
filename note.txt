@@ -11,3 +11,8 @@ mặc định thì listview sẽ có 1 phần padding top, để loại bỏ ph�
 
 nếu listview bị overflow kh scroll đc có thể thử wrap container chứa column lớn( có chứa listview) trong expanded
 và wrap luôn listview (hoặc các futurebuilder, streambuilder) trong expanded
+
+
+First Rule: use Expanded only within a column, row or flex.
+
+Second Rule: Parent column that have expanded child column must be wrapped with expanded as well
