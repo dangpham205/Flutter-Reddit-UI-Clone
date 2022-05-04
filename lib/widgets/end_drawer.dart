@@ -5,6 +5,7 @@ import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
 import 'package:midterm_519h0277/views/function_screens/settings_screen.dart';
+import 'package:midterm_519h0277/views/introduce_screen.dart';
 
 import '../views/function_screens/create_community_screen.dart';
 
@@ -43,6 +44,7 @@ class _EndDrawerState extends State<EndDrawer> {
           child: Padding(
             padding: const EdgeInsets.only(top: 40.0, left: 10,right: 10),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -209,34 +211,73 @@ class _EndDrawerState extends State<EndDrawer> {
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Divider(color: dividerColor, thickness: 1,),
                 ),
-                drawerItem(
-                  icon: Icons.person_outline,
-                  text: 'My Profile',
-                  function: () {
-                    Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
-                    });
-                  }
+                Expanded(
+                  child: MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              drawerItem(
+                                icon: Icons.person_outline,
+                                text: 'My Profile',
+                                function: () {
+                                  Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                                  });
+                                }
+                              ),
+                              const SizedBox(height: 4,),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateCommunityScreen()));
+                                },
+                                child: drawerItem(icon: Icons.add, text: 'Create a community')
+                              ),
+                              const SizedBox(height: 4,),
+                              drawerItem(icon: Icons.money, text: 'Reddit Coins'),
+                              const SizedBox(height: 4,),
+                              drawerItem(icon: Icons.shield_outlined, text: 'Reddit Premium'),
+                              const SizedBox(height: 4,),
+                              drawerItem(icon: Icons.bookmark_border, text: 'Saved'),
+                              const SizedBox(height: 4,),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(builder: (context) => const IntroduceScreen(),),(route) => false);
+                                  
+                                },
+                                child: drawerItem(icon: Icons.logout, text: 'Log Out')),
+                            
+                            ]
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 4,),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateCommunityScreen()));
-                  },
-                  child: drawerItem(icon: Icons.add, text: 'Create a community')
-                ),
-                const SizedBox(height: 4,),
-                drawerItem(icon: Icons.money, text: 'Reddit Coins'),
-                const SizedBox(height: 4,),
-                drawerItem(icon: Icons.shield_outlined, text: 'Reddit Premium'),
-                const SizedBox(height: 4,),
-                drawerItem(icon: Icons.bookmark_border, text: 'Saved'),
-                Flexible(child: Container(), flex: 1,),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
                   },
-                  child: drawerItem(icon: Icons.settings, text: 'Settings')),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: dividerColor
+                        ),
+                        bottom: BorderSide(
+                          color: dividerColor
+                        ),
+                      ),
+                    ),
+                    child: drawerItem(icon: Icons.settings, text: 'Settings'))
+                ),
               ],
             ),
           ),

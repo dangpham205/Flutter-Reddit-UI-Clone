@@ -65,9 +65,11 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,     
         onPageChanged: onPageChanged,   //thay đổi state của _tab bằng index của tab trong list children ở trên
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(top: 0),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.only(top: 8),
         child: CupertinoTabBar(
+          border: const Border(top: BorderSide.none),
           onTap: tabNavigate,       //dùng để chuyển trang
           backgroundColor: Colors.white,
           items: [
@@ -90,11 +92,12 @@ class _BaseScreenState extends State<BaseScreen> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UploadScreen()));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
+                  child: Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.only(left: 14, right: 14),
                     child: Icon(
-                      Icons.add,
-                      size: 50,
+                      Icons.reddit,
+                      size: 36,
                       color: tabColor(2),
                     ),
                   ),
