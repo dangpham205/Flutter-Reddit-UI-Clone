@@ -16,3 +16,31 @@ và wrap luôn listview (hoặc các futurebuilder, streambuilder) trong expande
 First Rule: use Expanded only within a column, row or flex.
 
 Second Rule: Parent column that have expanded child column must be wrapped with expanded as well
+
+
+return Stack(
+    children: [
+        Image(
+        image: AssetImage(post.data![index].imageUrl),
+        fit: BoxFit.cover,
+        ),
+        LayoutBuilder(      //xài cái này để lấy ra height, width của parent
+        builder: (BuildContext context, BoxConstraints constraints){
+            return Container(
+            height: constraints.maxHeight/,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                    Colors.black.withOpacity(0.9),
+                    Colors.black.withOpacity(0.003434),
+                ],
+                )
+            ),
+            );
+        }
+        ),
+        
+    ]
+    );

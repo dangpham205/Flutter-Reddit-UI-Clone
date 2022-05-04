@@ -5,6 +5,7 @@ import '../../constants/colors.dart';
 import '../../models/post.dart';
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
+import '../function_screens/post_detail_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({ Key? key }) : super(key: key);
@@ -59,50 +60,86 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
             ),
           ],
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight+8),
+            child: Category()),
         ),
-        body: SingleChildScrollView(
-          child: Column(
+        body: Container(
+          color: seperateColor,
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             children: [
-              const Category(),
-              ListView(
-                physics: const AlwaysScrollableScrollPhysics(),
-            // physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                children: [
-                  FutureBuilder(
-                    future: Post.getPostsWithImage(context),
-                    builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
-                      return StaggeredGridView.countBuilder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        crossAxisCount: 3, 
-                        itemCount: post.data?.length ?? 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          return InkWell(
-                            child: Image(
-                              image: AssetImage(post.data![index].imageUrl),
-                              fit: BoxFit.cover,
-                            ),
-                            onTap: () {
-                            },
-                          );
-                        },
-                        staggeredTileBuilder: (index) {
-                          return StaggeredTile.count(
-                            // (index % 5 == 1) ? 1 : 2,
-                            // (index % 5 == 0) ? 1 : 2,
-                            (index % 7 == 0) ? 2 : 1,     //cross axis cells count
-                            (index % 7 == 0) ? 2 : 1, 
-                          );
-                        },
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
+              FutureBuilder(
+                future: Post.getPostsWithImage(context),
+                builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
+                  return StaggeredGridView.countBuilder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    crossAxisCount: 2, 
+                    itemCount: post.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        color: seperateColor,
+                        padding: const EdgeInsets.all(12),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetailScreen(post: post.data![index])));
+                          },
+                          child: Stack(
+                            children: [
+                              Image(
+                                image: AssetImage(post.data![index].imageUrl),
+                                fit: BoxFit.cover,
+                              ),
+                              LayoutBuilder(      //xài cái này để lấy ra height, width của parent
+                                builder: (BuildContext context, BoxConstraints constraints){
+                                  return Container(
+                                    height: constraints.maxHeight/3,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.black.withOpacity(1),
+                                          Colors.black.withOpacity(0.05),
+                                        ],
+                                      )
+                                    ),
+                                  );
+                                }
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("r/"+post.data![index].channel, style: const TextStyle(color: Colors.white),),
+                                    const SizedBox(height: 8,),
+                                    Text(post.data![index].title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),)
+                                  ],
+                                ),
+                              )
+                            ]
+                          ),
+                        ),
                       );
-                    }
-                  )
-                ],
-              ),
+                    },
+                    staggeredTileBuilder: (index) {
+                      return StaggeredTile.count(
+                        // (index % 5 == 1) ? 1 : 2,
+                        // (index % 5 == 0) ? 1 : 2,
+                        (index % 7 == 0) ? 2 : 1,     //cross axis cells count
+                        (index % 7 == 0) ? 2 : 1, 
+                      );
+                    },
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 0,
+                  );
+                }
+              )
             ],
           ),
         ),
