@@ -11,6 +11,7 @@ import 'package:midterm_519h0277/widgets/end_drawer.dart';
 import '../../models/reddit.dart';
 import '../../models/redditor.dart';
 import '../../widgets/comment_card.dart';
+import '../../widgets/dialog_option.dart';
 
 class PostDetailScreen extends StatefulWidget {
 
@@ -95,201 +96,255 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ],
         ),
         body: Container(
-          color: Colors.white,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          color: seperateColor,
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                color: Colors.white,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(    //row contain channel avt, channel name, username, post time, join button
-                      children: [
-                        CircleAvatar(
-                          radius: 26,
-                          backgroundImage: AssetImage(widget.post.avatarUrl),
-                          backgroundColor: seperateColor,
-                        ),
-                        const SizedBox(width: 8,),
-                        Column(
+              
+              FutureBuilder(
+                future: Comment.getComments(context),
+                builder: (BuildContext context, AsyncSnapshot<List<Comment>> comment) {
+                return MediaQuery.removePadding(
+                  removeTop: true,
+                  context: context,
+                  child: Column(
+                    children: [
+                      Container(            //container dau screen
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                        color: Colors.white,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
-                                });
-                              },
-                              child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)),
-                            const SizedBox(height: 6,),
-                            InkWell(
-                              onTap: () {
-                                Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
-                                });
-                              },
+                            Row(    //row contain channel avt, channel name, username, post time, join button
+                              children: [
+                                CircleAvatar(
+                                  radius: 26,
+                                  backgroundImage: AssetImage(widget.post.avatarUrl),
+                                  backgroundColor: seperateColor,
+                                ),
+                                const SizedBox(width: 8,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
+                                        });
+                                      },
+                                      child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)),
+                                    const SizedBox(height: 6,),
+                                    InkWell(
+                                      onTap: () {
+                                        Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                                        });
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
+                                          const Icon(Icons.circle, color: textColor2,size: 4,),
+                                          Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            widget.post.awards == 0          //award cua~ post
+                            ? Container()
+                            : widget.post.awards == 1
+                            ? Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  CircleAvatar(
+                                    radius: 12,
+                                    backgroundImage: AssetImage('assets/image/aw1.jpg'),
+                                  ),
+                                  SizedBox(width: 4,),
+                                  Text('1 Award', style: TextStyle(color: textColor2, fontSize: 12),)
+                                ],
+                              ),
+                            )
+                            : Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  CircleAvatar(
+                                    radius: 12,
+                                    backgroundImage: AssetImage('assets/image/aw2.jpg'),
+                                  ),
+                                  SizedBox(width: 4,),
+                                  CircleAvatar(
+                                    radius: 12,
+                                    backgroundImage: AssetImage('assets/image/aw3.jpg'),
+                                  ),
+                                  SizedBox(width: 4,),
+                                  Text('2 Awards', style: TextStyle(color: textColor2, fontSize: 12),)
+                                ],
+                              ),
+                            ),
+                            Padding(                                //title
+                              padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+                              child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                            ),
+                            widget.post.caption != "" 
+                            ? Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 14),)
+                            : widget.post.imageUrl != ""
+                            ? Image(
+                              image: AssetImage(widget.post.imageUrl),
+                              fit: BoxFit.fitWidth,
+                            )
+                            : Container(),
+                            Padding(                                      //bottom cua post card
+                              padding: const EdgeInsets.only(top: 12.0),
                               child: Row(
                                 children: [
-                                  Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
-                                  const Icon(Icons.circle, color: textColor2,size: 4,),
-                                  Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
+                                  Flexible(
+                                    flex: 3,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(child: Row(
+                                          children: [
+                                            const Icon(Icons.arrow_circle_up, color: textColor2,),
+                                            const SizedBox(width: 8,),
+                                            Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                                            const SizedBox(width: 8,),
+                                            const Icon(Icons.arrow_circle_down, color: textColor2,),
+                    
+                                          ],
+                                        )),
+                                        Expanded(child: Row(
+                                          children: [
+                                            const SizedBox(width: 8,),
+                                            const Icon(Icons.chat_bubble_outline, color: textColor2,),
+                                            const SizedBox(width: 8,),
+                                            Text(widget.post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                                          ],
+                                        )),
+                                      ],
+                                    )
+                                  ),
+                                  Flexible(
+                                    flex: 2,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Row(
+                                            children: const [
+                                              Icon(Icons.share_outlined, color: textColor2,),
+                                              SizedBox(width: 8,),
+                                              Text('Share', style: TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                                            ],
+                                          ),
+                                        ),
+                                        const Icon(Icons.card_giftcard_outlined, color: textColor2,),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             )
                           ],
                         ),
-                      ],
-                    ),
-                    widget.post.awards == 0          //award cua~ post
-                    ? Container()
-                    : widget.post.awards == 1
-                    ? Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: AssetImage('assets/image/aw1.jpg'),
-                          ),
-                          SizedBox(width: 4,),
-                          Text('1 Award', style: TextStyle(color: textColor2, fontSize: 12),)
-                        ],
                       ),
-                    )
-                    : Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: AssetImage('assets/image/aw2.jpg'),
-                          ),
-                          SizedBox(width: 4,),
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: AssetImage('assets/image/aw3.jpg'),
-                          ),
-                          SizedBox(width: 4,),
-                          Text('2 Awards', style: TextStyle(color: textColor2, fontSize: 12),)
-                        ],
+                      const BestCommentsButton(),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: comment.data?.length ?? 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          var itemData = comment.data![index];
+                          return CommentCard(comment: itemData);
+                        }
                       ),
-                    ),
-                    Padding(                                //title
-                      padding: const EdgeInsets.only(top: 16.0, bottom: 8),
-                      child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                    ),
-                    widget.post.caption != "" 
-                    ? Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 14),)
-                    : widget.post.imageUrl != ""
-                    ? Image(
-                      image: AssetImage(widget.post.imageUrl),
-                      fit: BoxFit.fitWidth,
-                    )
-                    : Container(),
-                    Padding(                                      //bottom cua post card
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            flex: 3,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(child: Row(
-                                  children: [
-                                    const Icon(Icons.arrow_circle_up, color: textColor2,),
-                                    const SizedBox(width: 8,),
-                                    Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
-                                    const SizedBox(width: 8,),
-                                    const Icon(Icons.arrow_circle_down, color: textColor2,),
-            
-                                  ],
-                                )),
-                                Expanded(child: Row(
-                                  children: [
-                                    const SizedBox(width: 8,),
-                                    const Icon(Icons.chat_bubble_outline, color: textColor2,),
-                                    const SizedBox(width: 8,),
-                                    Text(widget.post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
-                                  ],
-                                )),
-                              ],
-                            )
-                          ),
-                          Flexible(
-                            flex: 2,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: const [
-                                      Icon(Icons.share_outlined, color: textColor2,),
-                                      SizedBox(width: 8,),
-                                      Text('Share', style: TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
-                                    ],
-                                  ),
-                                ),
-                                const Icon(Icons.card_giftcard_outlined, color: textColor2,),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                color: seperateColor,
-                child: Container(
-                  padding: const EdgeInsets.only(left: 12),
-                  width: 140,
-                  height: 50,
-                  child: Row(
-                    children: const [
-                      Icon(Icons.rocket, color: textColor2,),
-                      Text('BEST COMMENTS', style: TextStyle(color: textColor2, fontSize: 12, fontWeight: FontWeight.bold),),
-                      Icon(Icons.arrow_drop_down_outlined, color: textColor2,)
                     ],
                   ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    FutureBuilder(
-                      future: Comment.getComments(context),
-                      builder: (BuildContext context, AsyncSnapshot<List<Comment>> comment) {
-                      return MediaQuery.removePadding(
-                        removeTop: true,
-                        context: context,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: comment.data?.length ?? 0,
-                          itemBuilder: (BuildContext context, int index) {
-                            var itemData = comment.data![index];
-                            return CommentCard(comment: itemData);
-                          }
-                        ),
-                      );
-                      }
-                    ),
-                  ],
-                ),
+                );
+                }
               ),
             ],
           ),
         ),
       );
+  }
+}
+
+class BestCommentsButton extends StatelessWidget {
+  const BestCommentsButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      // width: MediaQuery.of(context).size.width,
+      color: seperateColor,
+      padding: const EdgeInsets.only(left: 12),
+      height: 50,
+      child: Material(
+        color: seperateColor,
+        child: InkWell(
+          onTap: () {
+            showDialog(
+              context: context, 
+              builder: (context) => Dialog(
+                alignment: Alignment.bottomCenter,
+                // insetPadding: EdgeInsets.only(top: 100),
+                insetPadding: EdgeInsets.zero,
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.95,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(12.0),
+                      top: Radius.circular(12.0)
+                    ),
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('SORT POSTS BY', style: TextStyle(color: textColor2, fontWeight: FontWeight.bold, fontSize: 12),),
+                      ),
+                      Divider(color: dividerColor,),
+                      DialogOption(icon: Icons.rocket, text: 'Best', isChoose: true),
+                      DialogOption(icon: Icons.stacked_bar_chart, text: 'Top', isChoose: false),
+                      DialogOption(icon: Icons.star_border, text: 'New', isChoose: false),
+                      DialogOption(icon: Icons.shield_outlined, text: 'Controversial', isChoose: false),
+                      DialogOption(icon: Icons.timer_outlined, text: 'Old', isChoose: false),
+                      DialogOption(icon: Icons.mic, text: 'Q&A', isChoose: false),
+                    ],
+                  ),
+                ),
+              ) 
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.rocket, color: textColor2,),
+                Text('BEST COMMENTS', style: TextStyle(color: textColor2, fontSize: 12, fontWeight: FontWeight.bold),),
+                Icon(Icons.arrow_drop_down_outlined, color: textColor2,)
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

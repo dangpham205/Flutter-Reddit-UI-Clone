@@ -129,47 +129,47 @@ class TopScreenButtons extends StatelessWidget {
                   color: seperateColor,
                   child: InkWell(
                     onTap: () {
-              showDialog(
-                context: context, 
-                builder: (context) => Dialog(
-                          alignment: Alignment.bottomCenter,
-                          // insetPadding: EdgeInsets.only(top: 100),
-                          insetPadding: EdgeInsets.zero,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width*0.95,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(12.0),
-                                top: Radius.circular(12.0)
-                              ),
-                              color: Colors.white,
+                    showDialog(
+                      context: context, 
+                      builder: (context) => Dialog(
+                        alignment: Alignment.bottomCenter,
+                        // insetPadding: EdgeInsets.only(top: 100),
+                        insetPadding: EdgeInsets.zero,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.95,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(12.0),
+                              top: Radius.circular(12.0)
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Text('POST VIEW', style: TextStyle(color: textColor2, fontWeight: FontWeight.bold, fontSize: 12),),
-                                ),
-                                Divider(color: dividerColor,),
-                                DialogOption(icon: Icons.horizontal_rule_outlined, text: 'Card', isChoose: true),
-                                DialogOption(icon: Icons.horizontal_split, text: 'Classic', isChoose: false),
-                              ],
-                            ),
+                            color: Colors.white,
                           ),
-                        ) 
-                      );
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      padding: const EdgeInsets.only(right: 12),
-                      child: const Icon(Icons.slideshow, color: textColor2,)),
-                                  ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text('POST VIEW', style: TextStyle(color: textColor2, fontWeight: FontWeight.bold, fontSize: 12),),
+                              ),
+                              Divider(color: dividerColor,),
+                              DialogOption(icon: Icons.horizontal_rule_outlined, text: 'Card', isChoose: true),
+                              DialogOption(icon: Icons.horizontal_split, text: 'Classic', isChoose: false),
+                            ],
+                          ),
+                        ),
+                      ) 
+                    );
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    padding: const EdgeInsets.only(right: 12),
+                    child: const Icon(Icons.slideshow, color: textColor2,)),
                                 ),
-                              ],
-                            );
+                              ),
+                            ],
+                          );
   }
 }
