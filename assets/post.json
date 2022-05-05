@@ -111,6 +111,62 @@
             "comments": 39,
             "isMember": "true",
             "awards": 2
+        },
+        {
+            "id": "8",
+            "channel": "announcements",
+            "avatarUrl": "assets/image/post2.jpg",
+            "username": "Luxand_com",
+            "time": "11h",
+            "title": "Lil Pump về Việt Nam ohmygod",
+            "caption": "",
+            "imageUrl": "assets/image/p1.png",
+            "upvotes": 4727,
+            "comments": 780,
+            "isMember": "true",
+            "awards": 1
+        },
+        {
+            "id": "7",
+            "channel": "announcements",
+            "avatarUrl": "assets/image/post2.jpg",
+            "username": "Luxand_com",
+            "time": "11h",
+            "title": "Whatssup",
+            "caption": "",
+            "imageUrl": "assets/image/p3.gif",
+            "upvotes": 4727,
+            "comments": 780,
+            "isMember": "true",
+            "awards": 1
+        },
+        {
+            "id": "7",
+            "channel": "announcements",
+            "avatarUrl": "assets/image/post2.jpg",
+            "username": "Luxand_com",
+            "time": "11h",
+            "title": "Hi there",
+            "caption": "",
+            "imageUrl": "assets/image/p2.png",
+            "upvotes": 4727,
+            "comments": 780,
+            "isMember": "true",
+            "awards": 1
+        },
+        {
+            "id": "7",
+            "channel": "announcements",
+            "avatarUrl": "assets/image/post2.jpg",
+            "username": "Luxand_com",
+            "time": "11h",
+            "title": "What i need rn",
+            "caption": "",
+            "imageUrl": "assets/image/p3.jpg",
+            "upvotes": 4727,
+            "comments": 780,
+            "isMember": "true",
+            "awards": 1
         }
     ] 
 }

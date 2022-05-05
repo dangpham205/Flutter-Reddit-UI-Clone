@@ -65,40 +65,30 @@ class _ExploreScreenState extends State<ExploreScreen> {
             preferredSize: Size.fromHeight(kToolbarHeight+8),
             child: Category()),
         ),
-        body: Container(
-          color: seperateColor,
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [
-              FutureBuilder(
-                future: Post.getPostsWithImage(context),
-                builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
-                  return StaggeredGridView.countBuilder(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    crossAxisCount: 2, 
-                    itemCount: post.data?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ImageStack(post: post.data![index],);
-                    },
-                    staggeredTileBuilder: (index) {
-                      return StaggeredTile.count(
-                        // (index % 5 == 1) ? 1 : 2,
-                        // (index % 5 == 0) ? 1 : 2,
-                        (index % 7 == 0) ? 2 : 1,     //cross axis cells count
-                        (index % 7 == 0) ? 2 : 1, 
-                      );
-                    },
-                    mainAxisSpacing: 0,
-                    crossAxisSpacing: 0,
-                  );
-                }
-              )
-            ],
-          ),
+        body: FutureBuilder(
+          future: Post.getPostsWithImage(context),
+          builder:(BuildContext context, AsyncSnapshot<List<Post>> post) {
+            return StaggeredGridView.countBuilder(
+              physics: const AlwaysScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              crossAxisCount: 2, 
+              itemCount: post.data?.length ?? 0,
+              itemBuilder: (BuildContext context, int index) {
+                return ImageStack(post: post.data![index],);
+              },
+              staggeredTileBuilder: (index) {
+                return StaggeredTile.count(
+                  // (index % 5 == 1) ? 1 : 2,
+                  // (index % 5 == 0) ? 1 : 2,
+                  (index % 5 == 0) ? 2 : 1,     //cross axis cells count
+                  (index % 5 == 0) ? 2 : 1, 
+                );
+              },
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+            );
+          }
         ),
     );
   }
@@ -122,9 +112,15 @@ class ImageStack extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Image(
-              image: AssetImage(post.imageUrl),
-              fit: BoxFit.cover,
+            LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints){
+                return Image(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth,
+                  image: AssetImage(post.imageUrl),
+                  fit: BoxFit.fitHeight,                
+                );
+              }
             ),
             LayoutBuilder(      //xài cái này để lấy ra height, width của parent
               builder: (BuildContext context, BoxConstraints constraints){
@@ -150,7 +146,22 @@ class ImageStack extends StatelessWidget {
                 children: [
                   Text("r/"+post.channel, style: const TextStyle(color: Colors.white),),
                   const SizedBox(height: 8,),
-                  Text(post.title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),)
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        post.title.length < 29 ?
+                        TextSpan(
+                          text: post.title,
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                        )
+                        :
+                        TextSpan(
+                          text: post.title.substring(0,30)+"...",
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                        )
+                      ]
+                    )
+                  ),
                 ],
               ),
             )
