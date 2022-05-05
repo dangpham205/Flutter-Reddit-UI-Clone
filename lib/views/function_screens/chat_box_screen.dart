@@ -5,7 +5,8 @@ import 'package:midterm_519h0277/models/redditor.dart';
 class ChatBoxScreen extends StatefulWidget {
 
   final Redditor redditor;
-  const ChatBoxScreen({ Key? key, required this.redditor }) : super(key: key);
+  final bool? doublePop;
+  const ChatBoxScreen({ Key? key, required this.redditor, this.doublePop }) : super(key: key);
 
   @override
   State<ChatBoxScreen> createState() => _ChatBoxScreenState();
@@ -20,7 +21,13 @@ class _ChatBoxScreenState extends State<ChatBoxScreen> {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
-            Navigator.of(context).pop();
+            if (widget.doublePop == true){
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            }
+            else{
+              Navigator.of(context).pop();
+            }
           },
           child: const Icon(Icons.arrow_back,color: Colors.black,)),
         title: Text(widget.redditor.name, style: const TextStyle(color: Colors.black),),

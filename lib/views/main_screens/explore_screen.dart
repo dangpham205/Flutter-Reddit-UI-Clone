@@ -81,51 +81,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     crossAxisCount: 2, 
                     itemCount: post.data?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        color: seperateColor,
-                        padding: const EdgeInsets.all(12),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetailScreen(post: post.data![index])));
-                          },
-                          child: Stack(
-                            children: [
-                              Image(
-                                image: AssetImage(post.data![index].imageUrl),
-                                fit: BoxFit.cover,
-                              ),
-                              LayoutBuilder(      //xài cái này để lấy ra height, width của parent
-                                builder: (BuildContext context, BoxConstraints constraints){
-                                  return Container(
-                                    height: constraints.maxHeight/3,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          Colors.black.withOpacity(1),
-                                          Colors.black.withOpacity(0.05),
-                                        ],
-                                      )
-                                    ),
-                                  );
-                                }
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("r/"+post.data![index].channel, style: const TextStyle(color: Colors.white),),
-                                    const SizedBox(height: 8,),
-                                    Text(post.data![index].title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),)
-                                  ],
-                                ),
-                              )
-                            ]
-                          ),
-                        ),
-                      );
+                      return ImageStack(post: post.data![index],);
                     },
                     staggeredTileBuilder: (index) {
                       return StaggeredTile.count(
@@ -143,6 +99,63 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ],
           ),
         ),
+    );
+  }
+}
+
+class ImageStack extends StatelessWidget {
+  const ImageStack({
+    Key? key, required this.post,
+  }) : super(key: key);
+
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: seperateColor,
+      padding: const EdgeInsets.all(12),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetailScreen(post: post)));
+        },
+        child: Stack(
+          children: [
+            Image(
+              image: AssetImage(post.imageUrl),
+              fit: BoxFit.cover,
+            ),
+            LayoutBuilder(      //xài cái này để lấy ra height, width của parent
+              builder: (BuildContext context, BoxConstraints constraints){
+                return Container(
+                  height: constraints.maxHeight/3,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black.withOpacity(1),
+                        Colors.black.withOpacity(0.05),
+                      ],
+                    )
+                  ),
+                );
+              }
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("r/"+post.channel, style: const TextStyle(color: Colors.white),),
+                  const SizedBox(height: 8,),
+                  Text(post.title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),)
+                ],
+              ),
+            )
+          ]
+        ),
+      ),
     );
   }
 }

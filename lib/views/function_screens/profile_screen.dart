@@ -9,7 +9,8 @@ import '../../widgets/dialog_option_without_tick.dart';
 
 class ProfileScreen extends StatefulWidget {
   final Redditor redditor;
-  const ProfileScreen({ Key? key, required this.redditor }) : super(key: key);
+  final bool? doublePop;
+  const ProfileScreen({ Key? key, required this.redditor, this.doublePop }) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -26,7 +27,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SliverAppBar(
               leading: InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  if (widget.doublePop == true){
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  }
+                  else{
+                    Navigator.of(context).pop();
+                  }
                   
                 },
                 child: const Padding(

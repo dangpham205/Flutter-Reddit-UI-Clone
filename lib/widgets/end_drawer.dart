@@ -227,7 +227,7 @@ class _EndDrawerState extends State<EndDrawer> {
                                 text: 'My Profile',
                                 function: () {
                                   Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor, doublePop: true,)));
                                   });
                                 }
                               ),

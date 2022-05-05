@@ -4,7 +4,6 @@ import 'package:midterm_519h0277/models/reddit.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/channel_about.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/channel_menu.dart';
 
-import '../../widgets/end_drawer.dart';
 import '../tab_screens.dart/profile_post.dart';
 
 class ChannelScreen extends StatefulWidget {
@@ -23,7 +22,6 @@ class _ChannelScreenState extends State<ChannelScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        endDrawer: const EndDrawer(),
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -38,24 +36,47 @@ class _ChannelScreenState extends State<ChannelScreen> {
                 ),
               ),
               leadingWidth: 44,
-              title: Text(widget.reddit.name),
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: dividerColor,
+                    // width: 5,
+                  ),
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(8.0),
+                    top: Radius.circular(8.0)
+                  ),
+                  color: searchColor,
+                ),
+                height: 38,
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Expanded(
+                      flex: 1,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Search',
+                          hintStyle: TextStyle(color: Colors.white),
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          )
+                        ),
+                      )
+                    )
+                  ],
+                ),
+              ),
               pinned: true,
               expandedHeight: MediaQuery.of(context).size.height * 0.50,
-              actions: [
-                const Icon(Icons.share_outlined, color: Colors.white,),
-                const SizedBox(width: 12,),
-                Builder(
-                  builder: (context) => TextButton(
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();   //openenddrawer
-                    }, 
-                    child: const CircleAvatar(
-                      radius: 16,
-                      backgroundImage: AssetImage('assets/image/reddit_avatar.png'),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8,),
+              actions: const[
+                Icon(Icons.share_outlined, color: Colors.white,),
+                SizedBox(width: 16,),
+                Icon(Icons.more_vert, color: Colors.white,),
+                SizedBox(width: 16,),
               ],
               flexibleSpace: FlexibleSpaceBar(
                 // background: Image.asset(widget.redditor.backgroundUrl, fit: BoxFit.cover,),

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/models/post.dart';
 import 'package:midterm_519h0277/models/reddit.dart';
 import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
+import 'package:midterm_519h0277/views/function_screens/chat_box_screen.dart';
 import 'package:midterm_519h0277/views/function_screens/post_detail_screen.dart';
+import 'package:midterm_519h0277/widgets/dialog_option_without_tick.dart';
 
 import '../constants/colors.dart';
 import '../models/redditor.dart';
@@ -87,17 +89,77 @@ class _PostCardState extends State<PostCard> {
                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
                             });
                           },
-                          child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold),)),
+                          child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)),
                         const SizedBox(height: 6,),
                         InkWell(
                           onTap: () {
-                            Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
-                            });
+                            showGeneralDialog(
+                              context: context, 
+                              transitionDuration: const Duration(milliseconds: 370),
+                              barrierDismissible: true,
+                              barrierLabel: "Barrier",
+                              barrierColor: Colors.black.withOpacity(0.6),
+                              transitionBuilder: (_, anim, __, child) {
+                                Tween<Offset> tween;
+                                if (anim.status == AnimationStatus.reverse) {
+                                  tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
+                                } else {
+                                  tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
+                                }
+                                return SlideTransition(
+                                  position: tween.animate(anim),
+                                  child: FadeTransition(
+                                    opacity: anim,
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              pageBuilder: (_,__,___) => Dialog(
+                                alignment: Alignment.center,
+                                // insetPadding: EdgeInsets.only(top: 100),
+                                insetPadding: EdgeInsets.zero,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width*0.95,
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.vertical(
+                                      bottom: Radius.circular(12.0),
+                                      top: Radius.circular(12.0)
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const DialogHead(),
+                                      InkWell(
+                                        onTap: () {
+                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor, doublePop: true,)));
+                                          });
+                                        },
+                                        child: const DialogOption2(icon: Icons.person, text: 'View Profile'),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatBoxScreen(redditor: redditor, doublePop: true,)));
+                                          });
+                                        },
+                                        child: const DialogOption2(icon: Icons.chat, text: 'Start Chat')
+                                      ),
+                                      const DialogOption2(icon: Icons.close, text: 'Block Account'),
+                                    ],
+                                  ),
+                                ),
+                              ) 
+                            );
+                            
                           },
                           child: Row(
                             children: [
-                              Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 12),),
+                              Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
                               const Icon(Icons.circle, color: textColor2,size: 4,),
                               Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
                             ],
@@ -228,6 +290,120 @@ class _PostCardState extends State<PostCard> {
         ),
       Container(color: seperateColor, height: 8,)
       ]
+    );
+  }
+}
+
+class DialogHead extends StatelessWidget {
+  const DialogHead({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.center,    //center casc children
+              children: [
+              Container(
+                color: Colors.white,
+                height: 200, 
+                width: MediaQuery.of(context).size.width*0.66, 
+              ),
+            Positioned(
+              top: 0,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                                          
+                      },
+                      child: const Image(
+                        image: AssetImage('assets/image/reddit_figure.png'),
+                        height: 160,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Material(
+                        color: Colors.white,
+                        child: InkWell(
+                          onTap: () {
+                            
+                          },
+                          child: const Text('u/Old-Complex567', style: TextStyle(fontWeight: FontWeight.bold),),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ),
+            
+          ],
+        )
+        ],
+      ),
+      const SizedBox(height: 8,),
+      Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const[
+                Text('--', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                SizedBox(height: 4,),
+                Text('Post Karma', style: TextStyle(color: textColor2),)
+              ],
+            )
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text('--', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                SizedBox(height: 4,),
+                Text('Comment Karma', style: TextStyle(color: textColor2),)
+              ],
+            )
+          )
+        ],
+      ),
+      const SizedBox(height: 12,),
+      Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const[
+                Text('--', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                SizedBox(height: 4,),
+                Text('Awarder Karma', style: TextStyle(color: textColor2),)
+              ],
+            )
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text('--', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                SizedBox(height: 4,),
+                Text('Awardee Karma', style: TextStyle(color: textColor2),)
+              ],
+            )
+          )
+        ],
+      ),
+      const SizedBox(height: 8,),
+
+      ],
     );
   }
 }
