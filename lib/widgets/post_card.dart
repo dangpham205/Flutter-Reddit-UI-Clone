@@ -220,16 +220,22 @@ class _PostCardState extends State<PostCard> {
                     ],
                   ),
                 ),
-                Padding(                                //title
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                  child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                Hero(
+                  tag: {widget.post.title},
+                  child: Padding(                                //title
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                    child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                  ),
                 ),
                 widget.post.caption != "" 
-                ? Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 12),)
+                ? Hero(tag: {widget.post.caption},child: Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 12),))
                 : widget.post.imageUrl != ""
-                ? Image(
-                  image: AssetImage(widget.post.imageUrl),
-                  fit: BoxFit.fitWidth,
+                ? Hero(
+                  tag: {widget.post.imageUrl},
+                  child: Image(
+                    image: AssetImage(widget.post.imageUrl),
+                    fit: BoxFit.fitWidth,
+                  ),
                 )
                 : Container(),
                 Padding(                                      //bottom cua post card
@@ -249,7 +255,7 @@ class _PostCardState extends State<PostCard> {
                                 Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
                                 const SizedBox(width: 8,),
                                 const Icon(Icons.arrow_circle_down, color: textColor2,),
-        
+                      
                               ],
                             )),
                             Expanded(child: Row(

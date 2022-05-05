@@ -36,6 +36,19 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text('Create a community', style: TextStyle(color: Colors.black),),
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 12.0, right: 60),
+            child: Padding(
+              padding: EdgeInsets.only(left: 0.0),
+              child: Icon(Icons.arrow_back, color: Colors.black,),
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: SizedBox(

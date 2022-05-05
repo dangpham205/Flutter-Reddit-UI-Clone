@@ -256,67 +256,76 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                 ],
                               ),
                             ),
-                            Padding(                                //title
-                              padding: const EdgeInsets.only(top: 16.0, bottom: 8),
-                              child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                            Hero(
+                              tag: {widget.post.title},
+                              child: Padding(                                //title
+                                padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+                                child: Text(widget.post.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                              ),
                             ),
                             widget.post.caption != "" 
-                            ? Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 14),)
+                            ? Hero(tag: {widget.post.caption},child: Text(widget.post.caption, style: const TextStyle(color: textColor2,fontSize: 14),))
                             : widget.post.imageUrl != ""
-                            ? Image(
-                              image: AssetImage(widget.post.imageUrl),
-                              fit: BoxFit.fitWidth,
+                            ? Hero(
+                              tag: {widget.post.imageUrl},
+                              child: Image(
+                                image: AssetImage(widget.post.imageUrl),
+                                fit: BoxFit.fitWidth,
+                              ),
                             )
                             : Container(),
-                            Container(                                      //bottom cua post card
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    flex: 3,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(child: Row(
-                                          children: [
-                                            const Icon(Icons.arrow_circle_up, color: textColor2,),
-                                            const SizedBox(width: 8,),
-                                            Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
-                                            const SizedBox(width: 8,),
-                                            const Icon(Icons.arrow_circle_down, color: textColor2,),
-                    
-                                          ],
-                                        )),
-                                        Expanded(child: Row(
-                                          children: [
-                                            const SizedBox(width: 8,),
-                                            const Icon(Icons.chat_bubble_outline, color: textColor2,),
-                                            const SizedBox(width: 8,),
-                                            Text(widget.post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
-                                          ],
-                                        )),
-                                      ],
-                                    )
-                                  ),
-                                  Flexible(
-                                    flex: 2,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Row(
-                                            children: const [
-                                              Icon(Icons.share_outlined, color: textColor2,),
-                                              SizedBox(width: 8,),
-                                              Text('Share', style: TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                            Hero(
+                              tag: 'bottom',
+                              child: Container(                                      //bottom cua post card
+                                padding: const EdgeInsets.only(top: 12.0),
+                                child: Row(
+                                  children: [
+                                    Flexible(
+                                      flex: 3,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(child: Row(
+                                            children: [
+                                              const Icon(Icons.arrow_circle_up, color: textColor2,),
+                                              const SizedBox(width: 8,),
+                                              Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                                              const SizedBox(width: 8,),
+                                              const Icon(Icons.arrow_circle_down, color: textColor2,),
+                                                
                                             ],
-                                          ),
-                                        ),
-                                        const Icon(Icons.card_giftcard_outlined, color: textColor2,),
-                                      ],
+                                          )),
+                                          Expanded(child: Row(
+                                            children: [
+                                              const SizedBox(width: 8,),
+                                              const Icon(Icons.chat_bubble_outline, color: textColor2,),
+                                              const SizedBox(width: 8,),
+                                              Text(widget.post.comments.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                                            ],
+                                          )),
+                                        ],
+                                      )
                                     ),
-                                  ),
-                                ],
+                                    Flexible(
+                                      flex: 2,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Row(
+                                              children: const [
+                                                Icon(Icons.share_outlined, color: textColor2,),
+                                                SizedBox(width: 8,),
+                                                Text('Share', style: TextStyle(color: textColor2, fontWeight: FontWeight.w600),)
+                                              ],
+                                            ),
+                                          ),
+                                          const Icon(Icons.card_giftcard_outlined, color: textColor2,),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             )
                           ],
