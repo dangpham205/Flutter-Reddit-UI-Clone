@@ -7,6 +7,7 @@ import '../../models/post.dart';
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
 import '../function_screens/post_detail_screen.dart';
+import '../function_screens/search_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({ Key? key }) : super(key: key);
@@ -27,25 +28,42 @@ class _ExploreScreenState extends State<ExploreScreen> {
           title: Container(
             height: 38,
             padding: const EdgeInsets.symmetric(horizontal: 6),
-            color: seperateColor,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Expanded(
-                  flex: 1,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      )
-                    ),
-                  )
-                )
-              ],
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(8.0),
+                top: Radius.circular(8.0)
+              ),
+              color: seperateColor,
+            ),
+            child: Material(
+              color: seperateColor,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.search, size: 20, color: textColor2,),
+                    Text('  Search', style: TextStyle(color: textColor2, fontSize: 14),)
+                    // Expanded(
+                    //   flex: 1,
+                    //   child: TextField(
+                    //     decoration: InputDecoration(
+                    //       border: InputBorder.none,
+                    //       hintText: 'Search',
+                    //       hintStyle: TextStyle(color: Colors.grey),
+                    //       icon: Icon(
+                    //         Icons.search,
+                    //         color: Colors.grey,
+                    //       )
+                    //     ),
+                    //   )
+                    // )
+                  ],
+                ),
+              ),
             ),
           ),
           actions: [
