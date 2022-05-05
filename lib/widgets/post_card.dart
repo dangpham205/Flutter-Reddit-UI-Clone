@@ -95,7 +95,7 @@ class _PostCardState extends State<PostCard> {
                           onTap: () {
                             showGeneralDialog(
                               context: context, 
-                              transitionDuration: const Duration(milliseconds: 370),
+                              transitionDuration: const Duration(milliseconds: 320),
                               barrierDismissible: true,
                               barrierLabel: "Barrier",
                               barrierColor: Colors.black.withOpacity(0.6),
