@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/constants/custom_icons.dart';
 import 'package:midterm_519h0277/models/post.dart';
 import 'package:midterm_519h0277/models/reddit.dart';
 import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
@@ -26,6 +27,7 @@ class _PostCardState extends State<PostCard> {
   
   late Redditor redditor;
   late Reddit reddit;
+  bool isVoted = false;
 
   void getRedditor(BuildContext context) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/redditor.json");
@@ -46,6 +48,19 @@ class _PostCardState extends State<PostCard> {
       if (r.name == widget.post.channel){
         reddit = r;
       }
+    }
+  }
+
+  void changeColor() {
+    if (isVoted == true ){
+      setState(() {
+        isVoted = false;
+      });
+    }
+    else{
+      setState(() {
+        isVoted = true;
+      });
     }
   }
 
@@ -83,86 +98,103 @@ class _PostCardState extends State<PostCard> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
-                            });
-                          },
-                          child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)),
-                        const SizedBox(height: 6,),
-                        InkWell(
-                          onTap: () {
-                            showGeneralDialog(
-                              context: context, 
-                              transitionDuration: const Duration(milliseconds: 320),
-                              barrierDismissible: true,
-                              barrierLabel: "Barrier",
-                              barrierColor: Colors.black.withOpacity(0.6),
-                              transitionBuilder: (_, anim, __, child) {
-                                Tween<Offset> tween;
-                                if (anim.status == AnimationStatus.reverse) {
-                                  tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
-                                } else {
-                                  tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
-                                }
-                                return SlideTransition(
-                                  position: tween.animate(anim),
-                                  child: FadeTransition(
-                                    opacity: anim,
-                                    child: child,
-                                  ),
-                                );
-                              },
-                              pageBuilder: (_,__,___) => Dialog(
-                                alignment: Alignment.center,
-                                // insetPadding: EdgeInsets.only(top: 100),
-                                insetPadding: EdgeInsets.zero,
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width*0.95,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.vertical(
-                                      bottom: Radius.circular(12.0),
-                                      top: Radius.circular(12.0)
+                        Material(
+                          color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 2),
+                              child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                            )),
+                        ),
+                        Material(
+                          color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              showGeneralDialog(
+                                context: context, 
+                                transitionDuration: const Duration(milliseconds: 310),
+                                barrierDismissible: true,
+                                barrierLabel: "Barrier",
+                                barrierColor: Colors.black.withOpacity(0.6),
+                                transitionBuilder: (_, anim, __, child) {
+                                  Tween<Offset> tween;
+                                  if (anim.status == AnimationStatus.reverse) {
+                                    tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+                                  } else {
+                                    tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+                                  }
+                                  return SlideTransition(
+                                    position: tween.animate(anim),
+                                    child: FadeTransition(
+                                      opacity: anim,
+                                      child: child,
                                     ),
-                                    color: Colors.white,
-                                  ),
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const DialogHead(),
-                                      InkWell(
-                                        onTap: () {
-                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor, doublePop: true,)));
-                                          });
-                                        },
-                                        child: const DialogOption2(icon: Icons.person, text: 'View Profile'),
+                                  );
+                                },
+                                pageBuilder: (_,__,___) => Dialog(
+                                  alignment: Alignment.center,
+                                  // insetPadding: EdgeInsets.only(top: 100),
+                                  insetPadding: EdgeInsets.zero,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width*0.95,
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.vertical(
+                                        bottom: Radius.circular(12.0),
+                                        top: Radius.circular(12.0)
                                       ),
-                                      InkWell(
-                                        onTap: () {
-                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatBoxScreen(redditor: redditor, doublePop: true,)));
-                                          });
-                                        },
-                                        child: const DialogOption2(icon: Icons.chat, text: 'Start Chat')
-                                      ),
-                                      const DialogOption2(icon: Icons.close, text: 'Block Account'),
-                                    ],
+                                      color: Colors.white,
+                                    ),
+                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        DialogHead(username: widget.post.username,),
+                                        Material(
+                                          color: Colors.white,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor, doublePop: true,)));
+                                              });
+                                            },
+                                            child: const DialogOption2(icon: Icons.person, text: 'View Profile'),
+                                          ),
+                                        ),
+                                        Material(
+                                          color: Colors.white,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatBoxScreen(redditor: redditor, doublePop: true,)));
+                                              });
+                                            },
+                                            child: const DialogOption2(icon: Icons.chat, text: 'Start Chat')
+                                          ),
+                                        ),
+                                        const DialogOption2(icon: CustomIcon.block, text: 'Block Account'),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ) 
-                            );
-                            
-                          },
-                          child: Row(
-                            children: [
-                              Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
-                              const Icon(Icons.circle, color: textColor2,size: 4,),
-                              Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
-                            ],
+                                ) 
+                              );
+                              
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, bottom: 4),
+                              child: Row(
+                                children: [
+                                  Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
+                                  const Icon(Icons.circle, color: textColor2,size: 4,),
+                                  Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
+                                ],
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -243,18 +275,35 @@ class _PostCardState extends State<PostCard> {
                   child: Row(
                     children: [
                       Flexible(
-                        flex: 3,
+                        flex: 4,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(child: Row(
                               children: [
-                                const Icon(Icons.arrow_circle_up, color: textColor2,),
+                                Material(
+                                  color: Colors.white,
+                                  child: InkWell(
+                                    onTap: changeColor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 3),
+                                      child: Icon(
+                                        CustomIcon.up_bold,
+                                        color: isVoted == true ? Colors.green : textColor2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 const SizedBox(width: 8,),
-                                Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                                Text(
+                                  widget.post.upvotes.toString(), 
+                                  style: TextStyle(
+                                    color: isVoted ? Colors.green : textColor2, 
+                                    fontWeight: FontWeight.w600),
+                                ),
                                 const SizedBox(width: 8,),
-                                const Icon(Icons.arrow_circle_down, color: textColor2,),
+                                const Icon(CustomIcon.down_bold, color: textColor2,),
                       
                               ],
                             )),
@@ -301,10 +350,13 @@ class _PostCardState extends State<PostCard> {
 }
 
 class DialogHead extends StatelessWidget {
+
   const DialogHead({
-    Key? key,
+    Key? key, required this.username,
   }) : super(key: key);
 
+  final String username;
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -338,15 +390,7 @@ class DialogHead extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: Material(
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () {
-                            
-                          },
-                          child: const Text('u/Old-Complex567', style: TextStyle(fontWeight: FontWeight.bold),),
-                        ),
-                      ),
+                      child: Text('u/'+username, style:const TextStyle(fontWeight: FontWeight.bold),),
                     ),
                   ],
                 ),

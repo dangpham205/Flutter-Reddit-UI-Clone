@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/constants/custom_icons.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/profile_about.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/profile_comment.dart';
@@ -159,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: const [
                               DialogOption2(icon: Icons.message, text: 'Send a message'),
                               DialogOption2(icon: Icons.heart_broken, text: 'Get them help and support'),
-                              DialogOption2(icon: Icons.close, text: 'Block account'),
+                              DialogOption2(icon: CustomIcon.block, text: 'Block account'),
                             ],
                           ),
                         ),

@@ -8,6 +8,7 @@ import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
 import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
 import 'package:midterm_519h0277/widgets/end_drawer.dart';
 
+import '../../constants/custom_icons.dart';
 import '../../models/reddit.dart';
 import '../../models/redditor.dart';
 import '../../widgets/comment_card.dart';
@@ -27,6 +28,20 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   late Redditor redditor;
   late Reddit reddit;
+  bool isVoted = false;
+
+  void changeColor() {
+    if (isVoted == true ){
+      setState(() {
+        isVoted = false;
+      });
+    }
+    else{
+      setState(() {
+        isVoted = true;
+      });
+    }
+  }
 
   void getRedditor(BuildContext context) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/redditor.json");
@@ -194,26 +209,38 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
-                                        });
-                                      },
-                                      child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)),
-                                    const SizedBox(height: 6,),
-                                    InkWell(
-                                      onTap: () {
-                                        Future.delayed(const Duration(milliseconds: 100)).then((value) {
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
-                                        });
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
-                                          const Icon(Icons.circle, color: textColor2,size: 4,),
-                                          Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
-                                        ],
+                                    Material(
+                                      color: Colors.white,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChannelScreen(reddit: reddit)));
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                          child: Text("r/"+widget.post.channel, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                        )),
+                                    ),
+                                    // const SizedBox(height: 6,),
+                                    Material(
+                                      color: Colors.white,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Future.delayed(const Duration(milliseconds: 100)).then((value) {
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: redditor)));
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                          child: Row(
+                                            children: [
+                                              Text("u/"+widget.post.username + " ", style: const TextStyle(color: textColor2, fontSize: 14),),
+                                              const Icon(Icons.circle, color: textColor2,size: 4,),
+                                              Text(" " + widget.post.time, style: const TextStyle(color: textColor2, fontSize: 12))
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     )
                                   ],
@@ -288,11 +315,25 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                         children: [
                                           Expanded(child: Row(
                                             children: [
-                                              const Icon(Icons.arrow_circle_up, color: textColor2,),
+                                              Material(
+                                                color: Colors.white,
+                                                child: InkWell(
+                                                  onTap: changeColor,
+                                                  child: Icon(
+                                                    CustomIcon.up_bold,
+                                                    color: isVoted == true ? Colors.green : textColor2,
+                                                  ),
+                                                ),
+                                              ),
                                               const SizedBox(width: 8,),
-                                              Text(widget.post.upvotes.toString(), style: const TextStyle(color: textColor2, fontWeight: FontWeight.w600),),
+                                              Text(
+                                                widget.post.upvotes.toString(), 
+                                                style: TextStyle(
+                                                  color: isVoted ? Colors.green : textColor2, 
+                                                  fontWeight: FontWeight.w600),
+                                              ),
                                               const SizedBox(width: 8,),
-                                              const Icon(Icons.arrow_circle_down, color: textColor2,),
+                                              const Icon(CustomIcon.down_bold, color: textColor2,),
                                                 
                                             ],
                                           )),

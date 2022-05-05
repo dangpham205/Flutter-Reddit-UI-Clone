@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/constants/custom_icons.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/inbox_messages.dart';
 import 'package:midterm_519h0277/views/tab_screens.dart/inbox_notifications.dart';
 import 'package:midterm_519h0277/widgets/dialog_option_without_tick.dart';
@@ -71,7 +72,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: const [
-                            DialogOption2(icon: Icons.carpenter_outlined, text: 'New message'),
+                            DialogOption2(icon: CustomIcon.colorize, text: 'New message'),
                             DialogOption2(icon: Icons.mark_chat_read_outlined, text: 'Mark all inbox tabs as read'),
                             DialogOption2(icon: Icons.settings, text: 'Edit notification settings'),
                           ],
