@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:midterm_519h0277/views/function_screens/image_category_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../models/post.dart';
@@ -213,24 +214,31 @@ class CategoryButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              spreadRadius: 2,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
+      child: Material(
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageCategoryScreen(title: name,)));
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.4),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+              borderRadius: const BorderRadius.vertical(
+                bottom: Radius.circular(26.0),
+                top: Radius.circular(26.0)
+              ),
+              color: Colors.white,
             ),
-          ],
-          borderRadius: const BorderRadius.vertical(
-            bottom: Radius.circular(26.0),
-            top: Radius.circular(26.0)
+            child: Text(name,style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),),
           ),
-          color: Colors.white,
         ),
-        child: Text(name,style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),),
       ),
     );
   }
