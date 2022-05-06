@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
 import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
+import 'package:midterm_519h0277/views/function_screens/settings_screen.dart';
 import 'package:midterm_519h0277/widgets/redditor_card.dart';
+import 'package:midterm_519h0277/widgets/trending_card.dart';
+
+import '../models/post.dart';
 
 class CustomSearchDelegate extends SearchDelegate{
 
@@ -58,25 +62,60 @@ class CustomSearchDelegate extends SearchDelegate{
         return MediaQuery.removePadding(
           removeTop: true,
           context: context,
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: redditor.data?.length ?? 0,
-            itemBuilder: (BuildContext context, int index) {
-              var itemData = redditor.data![index];
-              if (itemData.name.toLowerCase().contains(query.toLowerCase())){
-                return InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
-                  },
-                  child: RedditorCard(redditor: itemData)
-                );
-              }
-              else{
-                return Container();
-              }
-            }
+          child: ListView(
+            children: [
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: redditor.data?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  var itemData = redditor.data![index];
+                  if (itemData.name.toLowerCase().contains(query.toLowerCase())){
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
+                      },
+                      child: RedditorCard(redditor: itemData)
+                    );
+                  }
+                  else{
+                    return Container();
+                  }
+                }
+              ),
+              const DividerTitle(title: 'Trending Today'),
+              FutureBuilder(
+                future: Post.getPosts(context),
+                builder: (BuildContext context, AsyncSnapshot<List<Post>> post) {
+                  return MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: post.data?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (post.data![index].isMember == "false"){
+                              var itemData = post.data![index];
+                              return TrendingCard(
+                                post: itemData,
+                              );
+                            }
+                            else {
+                              return Container();
+                            }
+                          }
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              ),
+            ]
           )
         );
       }
@@ -91,25 +130,60 @@ class CustomSearchDelegate extends SearchDelegate{
         return MediaQuery.removePadding(
           removeTop: true,
           context: context,
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: redditor.data?.length ?? 0,
-            itemBuilder: (BuildContext context, int index) {
-              var itemData = redditor.data![index];
-              if (itemData.name.toLowerCase().contains(query.toLowerCase())){
-                return InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
-                  },
-                  child: RedditorCard(redditor: itemData)
-                );
-              }
-              else{
-                return Container();
-              }
-            }
+          child: ListView(
+            children: [
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: redditor.data?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  var itemData = redditor.data![index];
+                  if (itemData.name.toLowerCase().contains(query.toLowerCase())){
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
+                      },
+                      child: RedditorCard(redditor: itemData)
+                    );
+                  }
+                  else{
+                    return Container();
+                  }
+                }
+              ),
+              const DividerTitle(title: 'Trending Today'),
+              FutureBuilder(
+                future: Post.getPosts(context),
+                builder: (BuildContext context, AsyncSnapshot<List<Post>> post) {
+                  return MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: post.data?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (post.data![index].isMember == "false"){
+                              var itemData = post.data![index];
+                              return TrendingCard(
+                                post: itemData,
+                              );
+                            }
+                            else {
+                              return Container();
+                            }
+                          }
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              ),
+            ],
           )
         );
       }
