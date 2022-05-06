@@ -39,8 +39,8 @@ class _ImageCategoryScreenState extends State<ImageCategoryScreen> {
               return StaggeredTile.count(
                 // (index % 5 == 1) ? 1 : 2,
                 // (index % 5 == 0) ? 1 : 2,
-                (index % 7 == 0) ? 2 : 1,     //cross axis cells count
-                (index % 7 == 0) ? 2 : 1, 
+                (index % 5 == 0) ? 2 : 1,     //cross axis cells count
+                (index % 5 == 0) ? 2 : 1, 
               );
             },
             mainAxisSpacing: 0,

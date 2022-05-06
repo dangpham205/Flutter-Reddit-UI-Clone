@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_519h0277/constants/colors.dart';
 import 'package:midterm_519h0277/models/redditor.dart';
+import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
 import 'package:midterm_519h0277/widgets/redditor_card.dart';
 
 class CustomSearchDelegate extends SearchDelegate{
@@ -65,7 +66,12 @@ class CustomSearchDelegate extends SearchDelegate{
             itemBuilder: (BuildContext context, int index) {
               var itemData = redditor.data![index];
               if (itemData.name.toLowerCase().contains(query.toLowerCase())){
-                return RedditorCard(redditor: itemData);
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
+                  },
+                  child: RedditorCard(redditor: itemData)
+                );
               }
               else{
                 return Container();
@@ -93,7 +99,12 @@ class CustomSearchDelegate extends SearchDelegate{
             itemBuilder: (BuildContext context, int index) {
               var itemData = redditor.data![index];
               if (itemData.name.toLowerCase().contains(query.toLowerCase())){
-                return RedditorCard(redditor: itemData);
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(redditor: itemData)));
+                  },
+                  child: RedditorCard(redditor: itemData)
+                );
               }
               else{
                 return Container();
