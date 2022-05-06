@@ -4,10 +4,10 @@ import 'package:midterm_519h0277/views/function_screens/image_category_screen.da
 
 import '../../constants/colors.dart';
 import '../../models/post.dart';
+import '../../widgets/custom_search_delegate.dart';
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
 import '../function_screens/post_detail_screen.dart';
-import '../function_screens/search_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({ Key? key }) : super(key: key);
@@ -39,7 +39,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               color: seperateColor,
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+                  showSearch(context: context, delegate: CustomSearchDelegate());
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -47,20 +47,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   children: const [
                     Icon(Icons.search, size: 20, color: textColor2,),
                     Text('  Search', style: TextStyle(color: textColor2, fontSize: 14),)
-                    // Expanded(
-                    //   flex: 1,
-                    //   child: TextField(
-                    //     decoration: InputDecoration(
-                    //       border: InputBorder.none,
-                    //       hintText: 'Search',
-                    //       hintStyle: TextStyle(color: Colors.grey),
-                    //       icon: Icon(
-                    //         Icons.search,
-                    //         color: Colors.grey,
-                    //       )
-                    //     ),
-                    //   )
-                    // )
                   ],
                 ),
               ),
