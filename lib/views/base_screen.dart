@@ -56,7 +56,7 @@ class _BaseScreenState extends State<BaseScreen> {
         children: const [
           HomeScreen(),
           ExploreScreen(),
-          Center(child: Text('Upload screen')),
+          UploadScreen(havePop: false),
           ChatScreen(),
           NotificationScreen(),
         ]
@@ -90,7 +90,7 @@ class _BaseScreenState extends State<BaseScreen> {
             BottomNavigationBarItem(
                 icon: InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UploadScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UploadScreen(havePop: true,)));
                   },
                   child: Container(
                     color: Colors.white,

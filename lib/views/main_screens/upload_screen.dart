@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 
 class UploadScreen extends StatefulWidget {
-  const UploadScreen({ Key? key }) : super(key: key);
+
+  final bool havePop;
+  const UploadScreen({ Key? key, required this.havePop }) : super(key: key);
 
   @override
   State<UploadScreen> createState() => _UploadScreenState();
@@ -31,12 +33,14 @@ class _UploadScreenState extends State<UploadScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: InkWell(
+        leading: widget.havePop ?
+        InkWell(
           onTap: () {
             Navigator.of(context).pop();
           },
           child: const Icon(Icons.close)
-        ),
+        )
+        : Container(), 
         actions: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
