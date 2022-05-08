@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/reddit.dart';
+import '../../constants/colors.dart';
+import '../../models/reddit.dart';
 
 class RedditCard extends StatelessWidget {
   final Reddit reddit;

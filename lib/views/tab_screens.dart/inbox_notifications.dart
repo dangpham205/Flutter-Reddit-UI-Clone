@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/widgets/noti_card.dart';
+import '../../widgets/noti_card.dart';
 
 import '../../../constants/colors.dart';
-import 'package:midterm_519h0277/models/notification.dart' as model;
+import '../../models/notification.dart' as model;
 
 class NotificationsTab extends StatefulWidget {
   const NotificationsTab({ Key? key }) : super(key: key);

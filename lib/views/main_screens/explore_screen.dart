@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:midterm_519h0277/views/function_screens/image_category_screen.dart';
+import '../../views/function_screens/image_category_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../models/post.dart';

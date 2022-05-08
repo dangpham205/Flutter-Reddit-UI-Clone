@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/reddit.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/channel_about.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/channel_menu.dart';
+import '../../constants/colors.dart';
+import '../../models/reddit.dart';
+import '../../views/tab_screens.dart/channel_about.dart';
+import '../../views/tab_screens.dart/channel_menu.dart';
 
 import '../tab_screens.dart/profile_post.dart';
 

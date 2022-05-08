@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/redditor.dart';
+import '../../constants/colors.dart';
+import '../../models/redditor.dart';
 
 import '../../models/reddit.dart';
 import '../../widgets/reddit_card.dart';

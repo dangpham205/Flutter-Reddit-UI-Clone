@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/models/notification.dart' as model;
+import '../../models/notification.dart' as model;
 
 import '../constants/colors.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
+import '../../constants/colors.dart';
 
 class SettingOption extends StatefulWidget {
 

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/comment.dart';
-import 'package:midterm_519h0277/models/post.dart';
-import 'package:midterm_519h0277/views/function_screens/channel_screen.dart';
-import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
-import 'package:midterm_519h0277/widgets/end_drawer.dart';
+import '../../constants/colors.dart';
+import '../../models/comment.dart';
+import '../../models/post.dart';
+import '../../views/function_screens/channel_screen.dart';
+import '../../views/function_screens/profile_screen.dart';
+import '../../widgets/end_drawer.dart';
 
 import '../../constants/custom_icons.dart';
 import '../../models/reddit.dart';

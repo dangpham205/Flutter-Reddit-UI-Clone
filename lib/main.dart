@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:midterm_519h0277/views/introduce_screen.dart';
+import '../views/introduce_screen.dart';
 // C:\Users\Admin\Documents\scr\
 void main() async {
   runApp(const MyApp());

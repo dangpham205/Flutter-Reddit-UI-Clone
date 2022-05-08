@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/views/function_screens/post_detail_screen.dart';
+import '../../constants/colors.dart';
+import '../../views/function_screens/post_detail_screen.dart';
 
 import '../models/post.dart';
 

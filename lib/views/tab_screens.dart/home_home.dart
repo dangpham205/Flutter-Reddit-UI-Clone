@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/post.dart';
-import 'package:midterm_519h0277/widgets/dialog_option.dart';
+import '../../constants/colors.dart';
+import '../../models/post.dart';
+import '../../widgets/dialog_option.dart';
 
 import '../../../widgets/post_card.dart';
 

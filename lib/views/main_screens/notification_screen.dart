@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/custom_icons.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/inbox_messages.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/inbox_notifications.dart';
-import 'package:midterm_519h0277/widgets/dialog_option_without_tick.dart';
+import '../../constants/custom_icons.dart';
+import '../../views/tab_screens.dart/inbox_messages.dart';
+import '../../views/tab_screens.dart/inbox_notifications.dart';
+import '../../widgets/dialog_option_without_tick.dart';
 
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';

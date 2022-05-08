@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/custom_icons.dart';
-import 'package:midterm_519h0277/models/redditor.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/profile_about.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/profile_comment.dart';
-import 'package:midterm_519h0277/views/tab_screens.dart/profile_post.dart';
+import '../../constants/custom_icons.dart';
+import '../../models/redditor.dart';
+import '../../views/tab_screens.dart/profile_about.dart';
+import '../../views/tab_screens.dart/profile_comment.dart';
+import '../../views/tab_screens.dart/profile_post.dart';
 
 import '../../constants/colors.dart';
 import '../../widgets/dialog_option_without_tick.dart';

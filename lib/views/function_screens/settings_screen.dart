@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/widgets/setting_screen_option.dart';
+import '../../widgets/setting_screen_option.dart';
 
 import '../../constants/colors.dart';
 import '../../widgets/dialog_option.dart';

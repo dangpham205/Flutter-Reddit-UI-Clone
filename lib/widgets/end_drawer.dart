@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/redditor.dart';
-import 'package:midterm_519h0277/views/function_screens/profile_screen.dart';
-import 'package:midterm_519h0277/views/function_screens/settings_screen.dart';
-import 'package:midterm_519h0277/views/introduce_screen.dart';
+import '../../constants/colors.dart';
+import '../../models/redditor.dart';
+import '../../views/function_screens/profile_screen.dart';
+import '../../views/function_screens/settings_screen.dart';
+import '../../views/introduce_screen.dart';
 
 import '../views/function_screens/create_community_screen.dart';
 

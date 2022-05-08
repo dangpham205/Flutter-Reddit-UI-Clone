@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
-import 'package:midterm_519h0277/models/message.dart';
+import '../../constants/colors.dart';
+import '../../models/message.dart';
 
 class MessageDetailScreeen extends StatefulWidget {
 

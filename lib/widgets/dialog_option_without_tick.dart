@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/constants/colors.dart';
+import '../constants/colors.dart';
 
 class DialogOption2 extends StatelessWidget {
 

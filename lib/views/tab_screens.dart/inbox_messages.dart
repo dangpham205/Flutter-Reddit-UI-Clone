@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/models/message.dart';
-import 'package:midterm_519h0277/widgets/message_card.dart';
+import '../../models/message.dart';
+import '../../widgets/message_card.dart';
 
 import '../../../constants/colors.dart';
 

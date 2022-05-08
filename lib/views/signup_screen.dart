@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_519h0277/views/base_screen.dart';
-import 'package:midterm_519h0277/views/login_screen.dart';
+import '../../views/base_screen.dart';
+import '../../views/login_screen.dart';
 
 import '../constants/colors.dart';
 
