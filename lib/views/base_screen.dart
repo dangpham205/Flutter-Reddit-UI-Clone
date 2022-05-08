@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../views/main_screens/chat_screen.dart';
-import '../../views/main_screens/explore_screen.dart';
-import '../../views/main_screens/home_screen.dart';
-import '../../views/main_screens/notification_screen.dart';
-import '../../views/main_screens/upload_screen.dart';
+import '../views/main_screens/chat_screen.dart';
+import '../views/main_screens/explore_screen.dart';
+import '../views/main_screens/home_screen.dart';
+import '../views/main_screens/notification_screen.dart';
+import '../views/main_screens/upload_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({ Key? key }) : super(key: key);

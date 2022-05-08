@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
-import '../../views/function_screens/channel_screen.dart';
-import '../../views/function_screens/create_community_screen.dart';
-import '../../widgets/reddit_card.dart';
+import '../constants/colors.dart';
+import '../views/function_screens/channel_screen.dart';
+import '../views/function_screens/create_community_screen.dart';
+import '../widgets/reddit_card.dart';
 
 import '../models/reddit.dart';
 

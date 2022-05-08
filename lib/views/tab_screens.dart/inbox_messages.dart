@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/message.dart';
 import '../../widgets/message_card.dart';
 
-import '../../../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class MessagesTab extends StatefulWidget {
   const MessagesTab({ Key? key }) : super(key: key);

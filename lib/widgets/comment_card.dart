@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
-import '../../models/comment.dart';
+import '../constants/colors.dart';
+import '../models/comment.dart';
 
 class CommentCard extends StatefulWidget {
 

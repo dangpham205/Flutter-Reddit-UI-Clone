@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
-import '../../models/message.dart';
-import '../../views/function_screens/message_detail_screen.dart';
+import '../constants/colors.dart';
+import '../models/message.dart';
+import '../views/function_screens/message_detail_screen.dart';
 
 class MessageCard extends StatelessWidget {
   

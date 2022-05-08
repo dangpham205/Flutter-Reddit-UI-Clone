@@ -3,7 +3,7 @@ import '../../constants/colors.dart';
 import '../../models/post.dart';
 import '../../widgets/dialog_option.dart';
 
-import '../../../widgets/post_card.dart';
+import '../../widgets/post_card.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({ Key? key }) : super(key: key);

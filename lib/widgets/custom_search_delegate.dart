@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
-import '../../models/redditor.dart';
-import '../../views/function_screens/profile_screen.dart';
-import '../../views/function_screens/settings_screen.dart';
-import '../../widgets/redditor_card.dart';
-import '../../widgets/trending_card.dart';
+import '../constants/colors.dart';
+import '../models/redditor.dart';
+import '../views/function_screens/profile_screen.dart';
+import '../views/function_screens/settings_screen.dart';
+import '../widgets/redditor_card.dart';
+import '../widgets/trending_card.dart';
 
 import '../models/post.dart';
 

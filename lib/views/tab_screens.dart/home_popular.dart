@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/colors.dart';
-import '../../../models/post.dart';
-import '../../../widgets/post_card.dart';
+import '../../constants/colors.dart';
+import '../../models/post.dart';
+import '../../widgets/post_card.dart';
 import '../../widgets/dialog_option.dart';
 
 class PopularTab extends StatefulWidget {

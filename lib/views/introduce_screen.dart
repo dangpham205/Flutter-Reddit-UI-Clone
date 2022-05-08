@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_initializing_formals
 
 import 'package:flutter/material.dart';
-import '../../views/base_screen.dart';
-import '../../views/login_screen.dart';
+import '../views/base_screen.dart';
+import '../views/login_screen.dart';
 
 class IntroduceScreen extends StatefulWidget {
   const IntroduceScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/noti_card.dart';
 
-import '../../../constants/colors.dart';
+import '../../constants/colors.dart';
 import '../../models/notification.dart' as model;
 
 class NotificationsTab extends StatefulWidget {
