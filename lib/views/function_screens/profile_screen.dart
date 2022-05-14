@@ -325,7 +325,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: MediaQuery.of(context).size.width,
                         child: TabBarView(
                         children: [
-                          const PostsTab(),
+                          PostsTab(
+                            havePosts: widget.redditor.id == '1' ? true : false,
+                          ),
                           const CommentsTab(),
                           AboutTab(redditor: widget.redditor,),
                         ]
