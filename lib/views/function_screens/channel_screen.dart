@@ -4,6 +4,7 @@ import '../../models/reddit.dart';
 import '../../views/tab_screens.dart/channel_about.dart';
 import '../../views/tab_screens.dart/channel_menu.dart';
 
+import '../../widgets/custom_search_delegate.dart';
 import '../tab_screens.dart/profile_post.dart';
 
 class ChannelScreen extends StatefulWidget {
@@ -37,37 +38,30 @@ class _ChannelScreenState extends State<ChannelScreen> {
               ),
               leadingWidth: 44,
               title: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: dividerColor,
-                    // width: 5,
-                  ),
-                  borderRadius: const BorderRadius.vertical(
+                height: 38,
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
                     bottom: Radius.circular(8.0),
                     top: Radius.circular(8.0)
                   ),
-                  color: searchColor,
+                  color: seperateColor,
                 ),
-                height: 38,
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Expanded(
-                      flex: 1,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          hintStyle: TextStyle(color: Colors.white),
-                          icon: Icon(
-                            Icons.search,
-                            color: Colors.white,
-                          )
-                        ),
-                      )
-                    )
-                  ],
+                child: Material(
+                  color: seperateColor,
+                  child: InkWell(
+                    onTap: () {
+                      showSearch(context: context, delegate: CustomSearchDelegate());
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.search, size: 20, color: textColor2,),
+                        Text('  Search', style: TextStyle(color: textColor2, fontSize: 14),)
+                      ],
+                    ),
+                  ),
                 ),
               ),
               pinned: true,
@@ -194,7 +188,7 @@ class _ChannelScreenState extends State<ChannelScreen> {
                         width: MediaQuery.of(context).size.width,
                         child: const TabBarView(
                         children: [
-                          PostsTab(),
+                          PostsTab(havePosts: false,),
                           ChannelAboutTab(),
                           ChannelMenuTab(),
                         ]
