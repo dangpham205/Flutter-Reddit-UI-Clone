@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/constants/utils.dart';
 import '../../constants/colors.dart';
 import '../../models/comment.dart';
 import '../../models/post.dart';
@@ -29,6 +30,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   late Redditor redditor;
   late Reddit reddit;
   bool isVoted = false;
+  bool NotiOn = false;
 
   void changeColor() {
     if (isVoted == true ){
@@ -86,8 +88,22 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         title: Text(widget.post.channel),
         actions: [
             InkWell(
-              child: const Icon(Icons.notifications_outlined, color: Colors.white,),
+              child: Icon(
+                NotiOn
+                ? Icons.notifications 
+                : Icons.notifications_outlined, 
+                color: Colors.white,),
               onTap: () {
+                setState(() {
+                  if (NotiOn){
+                    NotiOn = false;
+                    showSnackBar(context, "Post unsubribed!", snack2);
+                  }
+                  else{
+                    NotiOn = true;
+                    showSnackBar(context, "Post subribed!", snack1);
+                  }
+                });
               },
             ),
             const SizedBox(width: 8,),
