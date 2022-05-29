@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_519h0277/views/function_screens/new_msg_screen.dart';
 import '../../constants/custom_icons.dart';
 import '../../views/tab_screens.dart/inbox_messages.dart';
 import '../../views/tab_screens.dart/inbox_notifications.dart';
@@ -6,6 +7,7 @@ import '../../widgets/dialog_option_without_tick.dart';
 
 import '../../widgets/end_drawer.dart';
 import '../../widgets/start_drawer.dart';
+import '../function_screens/settings_screen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({ Key? key }) : super(key: key);
@@ -71,10 +73,26 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            DialogOption2(icon: CustomIcon.colorize, text: 'New message'),
-                            DialogOption2(icon: Icons.mark_chat_read_outlined, text: 'Mark all inbox tabs as read'),
-                            DialogOption2(icon: Icons.settings, text: 'Edit notification settings'),
+                          children: [
+                            Material(
+                              color: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NewMsgScreen()));
+                                },
+                                child:const  DialogOption2(icon: CustomIcon.colorize, text: 'New message')
+                              ),
+                            ),
+                            const DialogOption2(icon: Icons.mark_chat_read_outlined, text: 'Mark all inbox tabs as read'),
+                            Material(
+                              color: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
+                                },
+                                child: const DialogOption2(icon: Icons.settings, text: 'Edit notification settings')
+                              ),
+                            ),
                           ],
                         ),
                       ),
