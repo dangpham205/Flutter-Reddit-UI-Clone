@@ -1,4 +1,3 @@
-# midterm_519h0277
 
 To run this project, first you need to run <b>'flutter pub get'<b> in your cmd to get the package then everything is good to go.
 
