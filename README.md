@@ -2,7 +2,7 @@
 
 To run this project, first you need to run <b>'flutter pub get'<b> in your cmd to get the package then everything is good to go.
 
-Vì em làm trên màn 6.3 inch nên nếu thầy chạy trên máy ~ 6.2-6.3 inch sẽ có tỉ lệ đúng với app thật ạ.
+App được trên màn 6.3 inch nên nếu bạn chạy trên máy ~ 6.2-6.3 inch sẽ có tỉ lệ đúng với app thật nhất.
 
 Các màn hình, chức năng đã làm: <br>
     -Màn Introduct: Hiển thị .gif làm background và 3 nút để người dùng login vào màn trang chủ.<br>
